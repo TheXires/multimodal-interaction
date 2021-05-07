@@ -4,7 +4,7 @@
  * @param text number between 1 and 30 as german text
  * @returns the string value as number or -1 if string is invalid
  */
-export const speedTextToNumber = (text: string) => {
+export const convertTextToNumber = (text: string) => {
   let result = -1;
   switch (text) {
     case 'ein':
