@@ -1,4 +1,9 @@
 node_modules
 *.env
 dist
+
+# picovoice binarys
+picovoice
 *.rhn
+*.ppn
+*.pv

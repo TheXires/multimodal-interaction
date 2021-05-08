@@ -2,10 +2,10 @@
  * convers a germand number between 1 and 30 from string to number
  * 
  * @param text number between 1 and 30 as german text
- * @returns the string value as number or -1 if string is invalid
+ * @returns the string value as number or undefined if string is invalid
  */
-export const convertTextToNumber = (text: string) => {
-  let result = -1;
+export const convertTextToNumber = (text: string): number | undefined => {
+  let result: number | undefined;
   switch (text) {
     case 'ein':
       result = 1;
@@ -98,6 +98,7 @@ export const convertTextToNumber = (text: string) => {
       result = 30;
       break;
     default:
+      result = undefined;
       break;
   }
   return result;

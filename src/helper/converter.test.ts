@@ -1,4 +1,4 @@
-import { convertTextToNumber } from './helper/converter';
+import { convertTextToNumber } from './converter';
 
 const numbersAsText = [
   'ein',
