@@ -3,7 +3,7 @@
 
 import carController from './controller/car.controller';
 const Picovoice = require('@picovoice/picovoice-node');
-const recorder = require('node-record-lpcm16'); 
+const recorder = require('node-record-lpcm16');
 
 // picovoice files
 // weake word
@@ -17,6 +17,7 @@ const rhinoModelFilePath = '/media/robin/Volume/Programmieren/carController/pico
 const rhinoLibraryFilePath = undefined;
 // sensitivity for wake word and context
 const sensitivity = 0.5;
+
 
 /**
  * 

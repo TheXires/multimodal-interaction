@@ -5,7 +5,7 @@
  * @param speed amount the vehicles speed should be increased
  */
 const increaseSpeed = (speed: number): void => {
-  console.log('increaseSpeed by: ', speed);
+  console.log('increaseSpeed by: ', speed, ', to: ', getCurrentSpeed() + speed, ' km/h');
 }
 
 /**
@@ -14,7 +14,7 @@ const increaseSpeed = (speed: number): void => {
  * @param speed amount the vehicles speed should be decreased
  */
 const decreaseSpeed = (speed: number): void => {
-  console.log('decreaseSpeed by: ', speed);
+  console.log('decreaseSpeed by: ', speed, ', to: ', getCurrentSpeed() - speed, ' km/h');
 }
 
 /**
@@ -27,12 +27,27 @@ const setSpeed = (speed: number): void => {
 }
 
 /**
+ * stops at the next possiblity
+ * 
+ */
+const stop = (): void => {
+  // TODO implement
+}
+
+/**
+ * emergency stops save as fast as possible
+ */
+const emergencyStop = (): void => {
+  // TODO implement
+}
+
+/**
  * change the direction of the vehicle at the next crossroad
  * 
  * @param slots direction the vehicle should turn to
  */
 const changeDirection = (slots: any): void => {
-  console.log('changeDirection: ', slots);
+  console.log('changeDirection to: ', slots);
 }
 
 /**
@@ -42,6 +57,18 @@ const changeDirection = (slots: any): void => {
  */
 const changeLane = (slots: any) => {
   console.log('changeLane: ', slots);
+}
+
+/**
+ * get the current speed of the vehicle
+ * 
+ * @returns current speed
+ */
+const getCurrentSpeed = (): number => {
+  // TODO an Fahrsimulator anbinden
+  const currentSpeed = 35;
+
+  return currentSpeed;
 }
 
 export default { increaseSpeed, decreaseSpeed, setSpeed, changeDirection, changeLane};
