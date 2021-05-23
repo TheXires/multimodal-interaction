@@ -7,24 +7,28 @@ const recorder = require('node-record-lpcm16');
 
 // picovoice files
 // weake word
-const keywordArgument = '/media/robin/Volume/Programmieren/carController/picovoice/hey_auto.ppn'; 
+const keywordArgument = '/media/robin/Volume/Programmieren/carController/picovoice/hey_auto.ppn';
 // rhino context file
-const contextPath = '/media/robin/Volume/Programmieren/carController/picovoice/carController_de_linux.rhn';
+const contextPath =
+  '/media/robin/Volume/Programmieren/carController/picovoice/carController_de_linux.rhn';
 // picovoice files for german language support
-const porcupineModelFilePath = '/media/robin/Volume/Programmieren/carController/picovoice/porcupine_params_de.pv';
+const porcupineModelFilePath =
+  '/media/robin/Volume/Programmieren/carController/picovoice/porcupine_params_de.pv';
 const porcupineLibraryFilePath = undefined;
-const rhinoModelFilePath = '/media/robin/Volume/Programmieren/carController/picovoice/rhino_params_de.pv';
+const rhinoModelFilePath =
+  '/media/robin/Volume/Programmieren/carController/picovoice/rhino_params_de.pv';
 const rhinoLibraryFilePath = undefined;
 // sensitivity for wake word and context
 const sensitivity = 0.5;
 
+// TODO delete this line
 
 /**
- * 
- * 
- * @param array 
- * @param size 
- * @returns 
+ *
+ *
+ * @param array
+ * @param size
+ * @returns
  */
 function chunkArray(array: any, size: any) {
   return Array.from({ length: Math.ceil(array.length / size) }, (v, index) =>
@@ -34,21 +38,20 @@ function chunkArray(array: any, size: any) {
 
 /**
  * logs to the console that wake word is detected
- * 
- * @param keyword number of the called wake word 
+ *
+ * @param keyword number of the called wake word
  */
 let keywordCallback = function (keyword: number) {
   console.log(`Wake word detected.`);
-}
-
+};
 
 let inferenceCallback = function (inference: any) {
-  console.log("Inference:")
+  console.log('Inference:');
   console.log(JSON.stringify(inference, null, 4));
-  if(!inference.isUnderstood) return
+  if (!inference.isUnderstood) return;
   switch (inference.intent) {
     case 'changeSpeed':
-      carController.changeSpeed(inference.slots);  
+      carController.changeSpeed(inference.slots);
       break;
     case 'changeDirection':
       carController.changeDirection(inference.slots);
@@ -59,8 +62,8 @@ let inferenceCallback = function (inference: any) {
     default:
       break;
   }
-}
- 
+};
+
 let handle = new Picovoice(
   keywordArgument,
   keywordCallback,
@@ -86,11 +89,11 @@ const recording = recorder.record({
 
 var frameAccumulator: any = [];
 
-recording.stream().on("error", (data: any) => {
+recording.stream().on('error', (data: any) => {
   console.log('recorder stream error');
 });
 
-recording.stream().on("data", (data: any) => {
+recording.stream().on('data', (data: any) => {
   // Two bytes per Int16 from the data buffer
   let newFrames16 = new Array(data.length / 2);
   for (let i = 0; i < data.length; i += 2) {
