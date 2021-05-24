@@ -4,13 +4,15 @@ import { socketActive, socket } from "..";
 /**
  * increase the vehicles speed
  *
- * @param speed amount the vehicles speed should be increased
+ * @param amount amount the vehicles speed should be increased
  */
-const increaseSpeed = (speed: number): void => {
-  console.log('increaseSpeed by: ', speed, ', to: ', getCurrentSpeed() + speed, ' km/h');
+const increaseSpeed = (amount: number): void => {
+  console.log('increaseSpeed by: ', amount, ', to: ', getCurrentSpeed() + amount, ' km/h');
   if(socketActive){
-    socket.sendMessage({action: 'increaseSpeed', amout: speed}, (error) => {
-      console.log(error.message);
+    socket.sendMessage({action: 'increaseSpeed', amout: amount}, (error) => {
+      if (error) {
+        console.log(error.message);
+      }
     });
   }
 };
@@ -18,11 +20,17 @@ const increaseSpeed = (speed: number): void => {
 /**
  * decrease the vehicles speed
  *
- * @param speed amount the vehicles speed should be decreased
+ * @param amount amount the vehicles speed should be decreased
  */
-const decreaseSpeed = (speed: number): void => {
-  console.log('decreaseSpeed by: ', speed, ', to: ', getCurrentSpeed() - speed, ' km/h');
-  // TODO
+const decreaseSpeed = (amount: number): void => {
+  console.log('decreaseSpeed by: ', amount, ', to: ', getCurrentSpeed() - amount, ' km/h');
+  if(socketActive){
+    socket.sendMessage({action: 'decreaseSpeed', amout: amount}, (error) => {
+      if(error){
+        console.log(error.message);
+      }
+    });
+  }
 };
 
 /**
@@ -32,6 +40,13 @@ const decreaseSpeed = (speed: number): void => {
  */
 const setSpeed = (speed: number): void => {
   console.log('setSpeed to: ', speed);
+  if(socketActive){
+    socket.sendMessage({action: 'setSpeed', speed: speed}, (error) => {
+      if (error) {
+        console.log(error.message);
+      }
+    });
+  }
 };
 
 /**
