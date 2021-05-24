@@ -5,9 +5,9 @@ import carService from '../services/car.service';
 const changeSpeed = (slots: any): void => {
   const speed = convertTextToNumber(slots.speed) || 5;
   if(slots.acceleration === 'schneller'){
-    carService.increaseSpeed(speed);
+    carService.changeSpeed(speed);
   } else if(slots.acceleration === 'langsamer') {
-    carService.decreaseSpeed(speed);
+    carService.changeSpeed(-speed);
   } else if(slots.acceleration == undefined) {
     // not allowed to set speed under 6 km/h to prevent slower speeds than "schrittgeschwindigkeit"
     // and wrong inputs because of undefind speed slot
@@ -22,7 +22,7 @@ const changeDirection = (slots: any): void => {
 
 // TODO implementieren
 const changeLane = (slots: any) => {
-  console.log('changeLane: ', slots);
+  console.log('changeLane: ', slots); 
 }
 
 export default { changeSpeed, changeDirection, changeLane};

@@ -1,32 +1,15 @@
-import { socketActive, socket } from "..";
+import { socketActive, socket } from '..';
 
-// TODO docs & implementierung
 /**
- * increase the vehicles speed
+ * change the vehicles speed
  *
  * @param amount amount the vehicles speed should be increased
  */
-const increaseSpeed = (amount: number): void => {
-  console.log('increaseSpeed by: ', amount, ', to: ', getCurrentSpeed() + amount, ' km/h');
-  if(socketActive){
-    socket.sendMessage({action: 'increaseSpeed', amout: amount}, (error) => {
+const changeSpeed = (amount: number): void => {
+  console.log('changeSpeed by: ', amount);
+  if (socketActive) {
+    socket.sendMessage({ action: 'changeSpeed', amout: amount }, (error) => {
       if (error) {
-        console.log(error.message);
-      }
-    });
-  }
-};
-
-/**
- * decrease the vehicles speed
- *
- * @param amount amount the vehicles speed should be decreased
- */
-const decreaseSpeed = (amount: number): void => {
-  console.log('decreaseSpeed by: ', amount, ', to: ', getCurrentSpeed() - amount, ' km/h');
-  if(socketActive){
-    socket.sendMessage({action: 'decreaseSpeed', amout: amount}, (error) => {
-      if(error){
         console.log(error.message);
       }
     });
@@ -40,8 +23,8 @@ const decreaseSpeed = (amount: number): void => {
  */
 const setSpeed = (speed: number): void => {
   console.log('setSpeed to: ', speed);
-  if(socketActive){
-    socket.sendMessage({action: 'setSpeed', speed: speed}, (error) => {
+  if (socketActive) {
+    socket.sendMessage({ action: 'setSpeed', speed: speed }, (error) => {
       if (error) {
         console.log(error.message);
       }
@@ -51,47 +34,62 @@ const setSpeed = (speed: number): void => {
 
 /**
  * stops at the next possiblity
- *
  */
 const stop = (): void => {
-  // TODO implement
+  console.log('stop vehicle');
+  if (socketActive) {
+    socket.sendMessage({ action: 'stop' }, (error) => {
+      if (error) {
+        console.log(error.message);
+      }
+    });
+  }
 };
 
 /**
  * emergency stops save as fast as possible
  */
 const emergencyStop = (): void => {
-  // TODO implement
+  console.log('emergencyStop vehicle');
+  if (socketActive) {
+    socket.sendMessage({ action: 'emergencyStop' }, (error) => {
+      if (error) {
+        console.log(error.message);
+      }
+    });
+  }
 };
 
 /**
  * change the direction of the vehicle at the next crossroad
  *
- * @param slots direction the vehicle should turn to
+ * @param direction direction the vehicle should turn to
  */
-const changeDirection = (slots: any): void => {
-  console.log('changeDirection to: ', slots);
+const changeDirection = (direction: any): void => {
+  console.log('changeDirection: ', direction);
+  if (socketActive) {
+    socket.sendMessage({ action: 'changeDirection', direction: direction }, (error) => {
+      if (error) {
+        console.log(error.message);
+      }
+    });
+  }
 };
 
 /**
  * change the lane of the vehicle
  *
- *
+ * @param direction direction the vehicle should change the lane to
  */
-const changeLane = (slots: any) => {
-  console.log('changeLane: ', slots);
+const changeLane = (direction: any) => {
+  console.log('changeLane: ', direction);
+  if (socketActive) {
+    socket.sendMessage({ action: 'changeLane', direction: direction }, (error) => {
+      if (error) {
+        console.log(error.message);
+      }
+    });
+  }
 };
 
-/**
- * get the current speed of the vehicle
- *
- * @returns current speed
- */
-const getCurrentSpeed = (): number => {
-  // TODO an Fahrsimulator anbinden
-  const currentSpeed = 35;
-
-  return currentSpeed;
-};
-
-export default { increaseSpeed, decreaseSpeed, setSpeed, changeDirection, changeLane };
+export default { changeSpeed, setSpeed, changeDirection, changeLane };
