@@ -2,29 +2,34 @@
 // is for some reason not working in the same instance with dist folder creation
 
 import carController from './controller/car.controller';
+import net from 'net';
+import JsonSocket from 'json-socket';
 const Picovoice = require('@picovoice/picovoice-node');
 const recorder = require('node-record-lpcm16');
 
-// picovoice files
+// socket setup
+const port = 4501;
+const host = '127.0.0.1';
+export const socket = new JsonSocket(new net.Socket());
+export let socketActive = false;
+socket.connect(port, host);
+socket.on('connect', () => (socketActive = true));
+
+// picovoice setup
 // weake word
-const keywordArgument = '/media/robin/Volume/Programmieren/carController/picovoice/hey_auto.ppn';
+const keywordArgument = __dirname + '/../picovoice/hey_auto.ppn';
 // rhino context file
-const contextPath =
-  '/media/robin/Volume/Programmieren/carController/picovoice/carController_de_linux.rhn';
+const contextPath = __dirname + '/../picovoice/carController_de_linux.rhn';
 // picovoice files for german language support
-const porcupineModelFilePath =
-  '/media/robin/Volume/Programmieren/carController/picovoice/porcupine_params_de.pv';
+const porcupineModelFilePath = __dirname + '/../picovoice/porcupine_params_de.pv';
 const porcupineLibraryFilePath = undefined;
-const rhinoModelFilePath =
-  '/media/robin/Volume/Programmieren/carController/picovoice/rhino_params_de.pv';
+const rhinoModelFilePath = __dirname + '/../picovoice/rhino_params_de.pv';
 const rhinoLibraryFilePath = undefined;
 // sensitivity for wake word and context
 const sensitivity = 0.5;
 
-// TODO delete this line
-
 /**
- *
+ * converts audiostream into processable frames
  *
  * @param array
  * @param size
@@ -41,11 +46,11 @@ function chunkArray(array: any, size: any) {
  *
  * @param keyword number of the called wake word
  */
-let keywordCallback = function (keyword: number) {
+const keywordCallback = function (keyword: number) {
   console.log(`Wake word detected.`);
 };
 
-let inferenceCallback = function (inference: any) {
+const inferenceCallback = function (inference: any) {
   console.log('Inference:');
   console.log(JSON.stringify(inference, null, 4));
   if (!inference.isUnderstood) return;
@@ -64,7 +69,7 @@ let inferenceCallback = function (inference: any) {
   }
 };
 
-let handle = new Picovoice(
+const handle = new Picovoice(
   keywordArgument,
   keywordCallback,
   contextPath,
