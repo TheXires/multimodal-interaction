@@ -66,7 +66,7 @@ const emergencyStop = (): void => {
  * @param direction direction the vehicle should turn to
  */
 const changeDirection = (direction: any): void => {
-  console.log('changeDirection: ', direction);
+  console.log('changeDirection service: ', direction);
   if (socketActive) {
     socket.sendMessage({ action: 'changeDirection', direction: direction }, (error) => {
       if (error) {
@@ -81,7 +81,7 @@ const changeDirection = (direction: any): void => {
  *
  * @param direction direction the vehicle should change the lane to
  */
-const changeLane = (direction: any) => {
+const changeLane = (direction: any): void => {
   console.log('changeLane: ', direction);
   if (socketActive) {
     socket.sendMessage({ action: 'changeLane', direction: direction }, (error) => {
@@ -92,4 +92,4 @@ const changeLane = (direction: any) => {
   }
 };
 
-export default { changeSpeed, setSpeed, changeDirection, changeLane };
+export default { changeSpeed, setSpeed, stop, emergencyStop, changeDirection, changeLane };
