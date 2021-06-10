@@ -17,7 +17,7 @@ socket.on('connect', () => (socketActive = true));
 
 // picovoice setup
 // weake word
-const keywordArgument = __dirname + '/../picovoice/leguan_linux.ppn';
+const keywordArgument = __dirname + '/../picovoice/hey_auto.ppn';
 // rhino context file
 const contextPath = __dirname + '/../picovoice/carController_de_linux.rhn';
 // picovoice files for german language support
