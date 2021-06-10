@@ -1,10 +1,12 @@
 import React from 'react';
-import './controllersection.css';
+import TestUi from '../testUI/TestUi';
+import './Controllersection.css';
 
 function Controllersection() {
   return (
     <div className="controllersection">
       controllersection
+      <TestUi />
     </div>
   )
 }

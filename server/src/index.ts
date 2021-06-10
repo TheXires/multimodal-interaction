@@ -1,39 +1,63 @@
 import * as net from 'net';
 import * as JsonSocket from 'json-socket';
+import {
+  changeSpeed,
+  setSpeed,
+  stop,
+  emergencyStop,
+  changeDirection,
+  changeLane,
+} from './actionhandler';
+import { createServer } from 'http';
+import { Server, Socket } from 'socket.io';
 
-const port = 4501;
-const server = net.createServer();
-server.listen(port);
-console.log(`Starting on port: ${port}`);
+// setup socket.io
+const socketioPost = 4503;
+const httpServer = createServer();
+const io = new Server(httpServer);
 
-server.on('connection', (socket) => {
-  console.log('Connection recieved');
-  socket = new JsonSocket(socket);
-  socket.on('message', (message) => {
-    console.log(message);
+io.on('connection', (socket: Socket) => {
+  console.log('socketio connection established');
+  socket.on('testcall', (req) => {
+    console.log(req);
   });
 });
 
-const changeSpeed = (speed: number): void => {
-  console.log('changeSpeed: ' + speed);
-};
+httpServer.listen(socketioPost, () => {
+  console.log(`Socket.io listening at http://localhost: ${socketioPost}`);
+});
 
-const setSpeed = (speed: number): void => {
-  console.log('setSpeed: ' + speed);
-};
+// setup json-socket
+const jsonSocketPort = 4501;
+export const jsonSocket = net.createServer();
+jsonSocket.listen(jsonSocketPort);
+console.log(`json-token listening at http://localhost: ${jsonSocketPort}`);
 
-const stop = (): void => {
-  console.log('stop');
-};
-
-const emergencyStop = (): void => {
-  console.log('emergencyStop');
-};
-
-const changeDirection = (direction: string): void => {
-  console.log('changeDirection: ' + direction);
-};
-
-const changeLane = (direction: string): void => {
-  console.log('changeLane: ' + direction);
-};
+jsonSocket.on('connection', (socket) => {
+  console.log('json-token connection established');
+  socket = new JsonSocket(socket);
+  socket.on('message', (req) => {
+    switch (req.action) {
+      case 'changeSpeed':
+        changeSpeed(req.amount);
+        break;
+      case 'setSpeed':
+        setSpeed(req.speed);
+        break;
+      case 'stop':
+        stop();
+        break;
+      case 'emergencyStop':
+        emergencyStop();
+        break;
+      case 'changeDirection':
+        changeDirection(req.direction);
+        break;
+      case 'changeLane':
+        changeLane(req.direction);
+        break;
+      default:
+        console.log('invalid command');
+    }
+  });
+});

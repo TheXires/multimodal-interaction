@@ -3,5 +3,5 @@
   right: 2rem;
   top: 2rem;
   font-size: 3rem;
-  color: #ffffff;
+  color: var(--font-light);
 }

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import './sidebar.css';
+import JsonSocket from 'json-socket';
+import React from 'react';
+import './Sidebar.css';
 
 function Sidebar() {
   return (

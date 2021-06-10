@@ -13,7 +13,14 @@ const host = '127.0.0.1';
 export const socket = new JsonSocket(new net.Socket());
 export let socketActive = false;
 socket.connect(port, host);
-socket.on('connect', () => (socketActive = true));
+socket.on('connect', () => {
+  socketActive = true;
+  console.log('connect')
+  socket.on('test', () => {
+    console.log('test');
+  });
+});
+
 
 // picovoice setup
 // weake word

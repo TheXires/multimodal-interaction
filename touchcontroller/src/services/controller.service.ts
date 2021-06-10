@@ -1,4 +1,4 @@
-import { socketActive, socket } from '..';
+import { sendMessage } from './connection.service';
 
 /**
  * change the vehicles speed
@@ -7,13 +7,7 @@ import { socketActive, socket } from '..';
  */
 const changeSpeed = (amount: number): void => {
   console.log('changeSpeed by: ', amount);
-  if (socketActive) {
-    socket.sendMessage({ action: 'changeSpeed', amount: amount }, (error) => {
-      if (error) {
-        console.log(error.message);
-      }
-    });
-  }
+  sendMessage({ action: 'changeSpeed', amount: amount });
 };
 
 /**
@@ -23,13 +17,7 @@ const changeSpeed = (amount: number): void => {
  */
 const setSpeed = (speed: number): void => {
   console.log('setSpeed to: ', speed);
-  if (socketActive) {
-    socket.sendMessage({ action: 'setSpeed', speed: speed }, (error) => {
-      if (error) {
-        console.log(error.message);
-      }
-    });
-  }
+  sendMessage({ action: 'setSpeed', speed: speed });
 };
 
 /**
@@ -37,13 +25,7 @@ const setSpeed = (speed: number): void => {
  */
 const stop = (): void => {
   console.log('stop vehicle');
-  if (socketActive) {
-    socket.sendMessage({ action: 'stop' }, (error) => {
-      if (error) {
-        console.log(error.message);
-      }
-    });
-  }
+  sendMessage({ action: 'stop' });
 };
 
 /**
@@ -51,13 +33,7 @@ const stop = (): void => {
  */
 const emergencyStop = (): void => {
   console.log('emergencyStop vehicle');
-  if (socketActive) {
-    socket.sendMessage({ action: 'emergencyStop' }, (error) => {
-      if (error) {
-        console.log(error.message);
-      }
-    });
-  }
+  sendMessage({ action: 'emergencyStop' });
 };
 
 /**
@@ -67,13 +43,7 @@ const emergencyStop = (): void => {
  */
 const changeDirection = (direction: any): void => {
   console.log('changeDirection service: ', direction);
-  if (socketActive) {
-    socket.sendMessage({ action: 'changeDirection', direction: direction }, (error) => {
-      if (error) {
-        console.log(error.message);
-      }
-    });
-  }
+  sendMessage({ action: 'changeDirection', direction: direction });
 };
 
 /**
@@ -83,13 +53,7 @@ const changeDirection = (direction: any): void => {
  */
 const changeLane = (direction: any): void => {
   console.log('changeLane: ', direction);
-  if (socketActive) {
-    socket.sendMessage({ action: 'changeLane', direction: direction }, (error) => {
-      if (error) {
-        console.log(error.message);
-      }
-    });
-  }
+  sendMessage({ action: 'changeLane', direction: direction });
 };
 
 export default { changeSpeed, setSpeed, stop, emergencyStop, changeDirection, changeLane };

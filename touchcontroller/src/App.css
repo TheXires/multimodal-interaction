@@ -1,3 +1,16 @@
+:root {
+  --font: #000000;
+  --font-light: #555555;
+  --accent: teal;
+  --background: #f5f5f5;
+  --background-dark: #282828;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .App {
   display: flex;
 }
