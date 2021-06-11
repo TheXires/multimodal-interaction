@@ -1,5 +1,3 @@
-import { jsonSocket } from ".";
-
 const changeSpeed = (speed: number): void => {
   console.log('changeSpeed: ' + speed);
 };
@@ -24,4 +22,11 @@ const changeLane = (direction: string): void => {
   console.log('changeLane: ' + direction);
 };
 
-export { changeSpeed, setSpeed, stop, emergencyStop, changeDirection, changeLane };
+export default {
+  changeSpeed,
+  setSpeed,
+  stop,
+  emergencyStop,
+  changeDirection,
+  changeLane,
+};

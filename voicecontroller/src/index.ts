@@ -1,26 +1,11 @@
 // IMPORTANT if after npm start no logs appear, just retry once
 // is for some reason not working in the same instance with dist folder creation
 
+import { sendMessageToServer } from './connection/connectToServer';
 import carController from './controller/car.controller';
-import net from 'net';
-import JsonSocket from 'json-socket';
+import uiController from './controller/ui.controller';
 const Picovoice = require('@picovoice/picovoice-node');
 const recorder = require('node-record-lpcm16');
-
-// socket setup
-const port = 4501;
-const host = '127.0.0.1';
-export const socket = new JsonSocket(new net.Socket());
-export let socketActive = false;
-socket.connect(port, host);
-socket.on('connect', () => {
-  socketActive = true;
-  console.log('connect')
-  socket.on('test', () => {
-    console.log('test');
-  });
-});
-
 
 // picovoice setup
 // weake word
@@ -49,16 +34,18 @@ function chunkArray(array: any, size: any) {
 }
 
 /**
- * logs to the console that wake word is detected
+ * logs to the console that wake word is detected and sends signal to the Server
  *
  * @param keyword number of the called wake word
  */
 const keywordCallback = function (keyword: number) {
   console.log(`Wake word detected.`);
+  uiController.startListening();
 };
 
 const inferenceCallback = function (inference: any) {
   console.log('Inference:');
+  uiController.stopListening();
   console.log(JSON.stringify(inference, null, 4));
   if (!inference.isUnderstood) return;
   switch (inference.intent) {
