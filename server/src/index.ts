@@ -1,8 +1,8 @@
 import * as net from 'net';
 import * as JsonSocket from 'json-socket';
-import requestController from './controller/request.controller'
+import requestController from './controller/request.controller';
 
-// setup json-socket
+// setup json-socket server
 const jsonSocketPort = 4501;
 export const jsonSocket = net.createServer();
 jsonSocket.listen(jsonSocketPort);

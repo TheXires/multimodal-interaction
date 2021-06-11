@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './TestUI.css';
-import carService from '../../services/controller.service';
+import carService from '../../services/car.service';
 
 enum eDirection {
   rechts,

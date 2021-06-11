@@ -3,11 +3,16 @@ import './App.css';
 import Clock from './components/clock/clock';
 import Sidebar from './components/sidebar/Sidebar';
 import Controllersection from './components/controllersection/Controllersection';
-import { sendMessage } from './services/connection.service';
+import { sendMessageToServer } from './connection/connectToServer';
+import { jsonSocketPort, serverSocket } from './connection/server';
+
+// start client server
+serverSocket.listen(jsonSocketPort);
 
 function App() {
   useEffect(() => {
-    sendMessage({ action: 'changeSpeed', amount: 14 });
+    sendMessageToServer({ action: 'changeSpeed', amount: 14 });
+    sendMessageToServer({ action: 'connectToMe' });
   }, []);
 
   return (

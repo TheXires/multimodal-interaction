@@ -1,6 +1,7 @@
 import JsonSocket from 'json-socket';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Sidebar.css';
+import {listening as serverListening} from '../../connection/server';
 
 function Sidebar() {
   return (

@@ -1,8 +1,13 @@
+import { clientPort, clientSocket, host } from '../connection/connectToClient';
 import carService from '../service/car.service';
 import uiService from '../service/ui.service';
 
-const processRequest = (req) => {
+const processRequest = (req): void => {
   switch (req.action) {
+    case 'connectToMe':
+      clientSocket.connect(clientPort, host);
+      console.log('connected to UI');
+      break;
     case 'changeSpeed':
       carService.changeSpeed(req.amount);
       break;
@@ -22,13 +27,14 @@ const processRequest = (req) => {
       carService.changeLane(req.direction);
       break;
     case 'startListening':
-      uiService.startListening();
+      uiService.listening();
       break;
     case 'stopListening':
-      uiService.stopListening();
+      uiService.processing();
       break;
     default:
       console.log('invalid command');
+      uiService.finished();
   }
 };
 

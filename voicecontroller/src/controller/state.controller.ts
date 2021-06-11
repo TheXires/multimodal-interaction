@@ -1,11 +1,11 @@
-import uiService from '../services/ui.service';
+import stateService from '../services/state.service';
 
 const startListening = () => {
-  uiService.startListening();
+  stateService.startListening();
 };
 
 const stopListening = () => {
-  uiService.stopListening();
+  stateService.stopListening();
 };
 
 export default { startListening , stopListening};

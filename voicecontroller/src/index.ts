@@ -3,7 +3,7 @@
 
 import { sendMessageToServer } from './connection/connectToServer';
 import carController from './controller/car.controller';
-import uiController from './controller/ui.controller';
+import stateController from './controller/state.controller';
 const Picovoice = require('@picovoice/picovoice-node');
 const recorder = require('node-record-lpcm16');
 
@@ -40,12 +40,12 @@ function chunkArray(array: any, size: any) {
  */
 const keywordCallback = function (keyword: number) {
   console.log(`Wake word detected.`);
-  uiController.startListening();
+  stateController.startListening();
 };
 
 const inferenceCallback = function (inference: any) {
   console.log('Inference:');
-  uiController.stopListening();
+  stateController.stopListening();
   console.log(JSON.stringify(inference, null, 4));
   if (!inference.isUnderstood) return;
   switch (inference.intent) {
