@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import './App.css';
 import Clock from './components/clock/clock';
 import Sidebar from './components/sidebar/Sidebar';
@@ -8,6 +8,10 @@ import { jsonSocketPort, serverSocket } from './connection/server';
 
 // start client server
 serverSocket.listen(jsonSocketPort);
+
+function loading() {
+  return <div>Loading...</div>;
+}
 
 function App() {
   useEffect(() => {
@@ -19,7 +23,11 @@ function App() {
     <div className="App">
       <Clock />
       <Sidebar />
-      <Controllersection />
+      <Suspense
+        fallback={loading}
+      >
+        <Controllersection />
+      </Suspense>
     </div>
   );
 }
