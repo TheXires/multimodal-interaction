@@ -1,25 +1,78 @@
 import net from 'net';
-import JsonSocket from 'json-socket';
+
 // socket setup
 const port = 4501;
-const host = '127.0.0.1';
-const socket = new JsonSocket(new net.Socket());
+const socket = net.createConnection(port);
 let socketActive = false;
-socket.connect(port, host);
+const server = [];
+
+/**
+ * connect to server
+ */
+const connectToServer = () => {
+  socket.destroy();
+  console.log('test: ', socket.destroyed);
+  socket.setTimeout(0);
+  socket.connect(port);
+};
+
+/**
+ * set interval to try to connect to server for independent boot order
+ */
+const tryToConnect = setInterval(() => {
+  if (!socketActive) {
+    connectToServer();
+  } else {
+    clearInterval(tryToConnect);
+  }
+}, 3000);
+
+/**
+ * listens to events send from server
+ */
 socket.on('connect', () => {
   socketActive = true;
-  console.log('connect');
-  socket.on('test', () => {
-    console.log('test');
-  });
+  console.log('connected');
 });
 
+socket.on('data', (data) => {
+  console.log(JSON.parse(data.toString()));
+});
+
+// handles server error messages
+socket.on('error', (error: any) => {
+  if (error.code === 'ECONNREFUSED') {
+    console.log('trying to connect...');
+  } else {
+    console.error(error.message);
+    clearInterval(tryToConnect);
+  }
+});
+
+// when losing connection to server try to reconnect
+socket.on('end', () => {
+  console.log('Try to reconnect...');
+  socketActive = false;
+  const tryToReconnect = setInterval(() => {
+    if (!socketActive) {
+      connectToServer();
+    } else {
+      clearInterval(tryToReconnect);
+    }
+  }, 3000);
+});
+
+/**
+ * send message to Server
+ *
+ * @param message JSON Object
+ */
 export const sendMessageToServer = (message: any) => {
   if (socketActive) {
-    socket.sendMessage(message, (error) => {
+    socket.write(JSON.stringify(message), (error) => {
       if (error) {
         console.log(error.message);
       }
     });
   }
-}
+};

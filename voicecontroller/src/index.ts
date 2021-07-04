@@ -29,7 +29,7 @@ const sensitivity = 0.5;
  */
 function chunkArray(array: any, size: any) {
   return Array.from({ length: Math.ceil(array.length / size) }, (v, index) =>
-    array.slice(index * size, index * size + size)
+    array.slice(index * size, index * size + size),
   );
 }
 
@@ -40,6 +40,14 @@ function chunkArray(array: any, size: any) {
  */
 const keywordCallback = function (keyword: number) {
   console.log(`Wake word detected.`);
+  stateController.startListening();
+};
+
+/**
+ * forces the voiceController to listen, even without a wakeword
+ */
+export const forceListening = () => {
+  console.log(`Activated through touchController`);
   stateController.startListening();
 };
 
@@ -73,7 +81,7 @@ const handle = new Picovoice(
   porcupineModelFilePath,
   porcupineLibraryFilePath,
   rhinoModelFilePath,
-  rhinoLibraryFilePath
+  rhinoLibraryFilePath,
 );
 
 const frameLength = handle.frameLength;
