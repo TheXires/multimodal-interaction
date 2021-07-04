@@ -1,15 +1,15 @@
-import { sendMessageToUI } from '../connection/connectToClient';
+import { sendMessage } from '../index';
 
 const listening = (): void => {
-  sendMessageToUI({ action: 'listening' });
+  sendMessage({ action: 'listening' });
 };
 
 const processing = (): void => {
-  sendMessageToUI({ action: 'processing' });
+  sendMessage({ action: 'processing' });
 };
 
-const finished = (): void => {
-  sendMessageToUI({ action: 'finished' });
+export const finished = (): void => {
+  sendMessage({ action: 'finished' });
 };
 
 export default { listening, processing, finished };

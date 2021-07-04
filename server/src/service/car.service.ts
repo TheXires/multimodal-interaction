@@ -1,33 +1,34 @@
-import { sendMessageToUI } from '../connection/connectToClient';
+import { sendMessage } from '../index';
+import { finished } from './ui.service';
 
 const changeSpeed = (speed: number): void => {
   console.log('changeSpeed: ' + speed);
-  sendMessageToUI({ action: 'finished' });
+  finished();
 };
 
 const setSpeed = (speed: number): void => {
   console.log('setSpeed: ' + speed);
-  sendMessageToUI({ action: 'finished' });
+  finished();
 };
 
 const stop = (): void => {
   console.log('stop');
-  sendMessageToUI({ action: 'finished' });
+  finished();
 };
 
 const emergencyStop = (): void => {
   console.log('emergencyStop');
-  sendMessageToUI({ action: 'finished' });
+  finished();
 };
 
 const changeDirection = (direction: string): void => {
   console.log('changeDirection: ' + direction);
-  sendMessageToUI({ action: 'finished' });
+  finished();
 };
 
 const changeLane = (direction: string): void => {
   console.log('changeLane: ' + direction);
-  sendMessageToUI({ action: 'finished' });
+  finished();
 };
 
 export default {
