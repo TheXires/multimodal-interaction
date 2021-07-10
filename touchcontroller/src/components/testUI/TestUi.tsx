@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import './TestUI.css';
 import carService from '../../services/car.service';
+import infotainmentService from '../../services/infotainment.service';
 
 enum eDirection {
   rechts,
-  links
+  links,
 }
 
 function TestUi() {
@@ -73,6 +74,13 @@ function TestUi() {
           }}
         >
           changeLane
+        </button>
+        <button
+          onClick={() => {
+            infotainmentService.activateMic();
+          }}
+        >
+          activateMic
         </button>
       </div>
     </div>

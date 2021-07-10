@@ -1,4 +1,4 @@
-import { sendMessageToServer } from '../connection/connectToServer';
+import { sendMessage } from '../connection/connectToServer';
 
 /**
  * change the vehicles speed
@@ -7,7 +7,8 @@ import { sendMessageToServer } from '../connection/connectToServer';
  */
 const changeSpeed = (amount: number): void => {
   console.log('changeSpeed by: ', amount);
-  sendMessageToServer({ action: 'changeSpeed', amount: amount });
+  // sendMessageToServer({ action: 'changeSpeed', amount: amount });
+  sendMessage({ action: 'changeSpeed', amount: amount });
 };
 
 /**
@@ -17,7 +18,7 @@ const changeSpeed = (amount: number): void => {
  */
 const setSpeed = (speed: number): void => {
   console.log('setSpeed to: ', speed);
-  sendMessageToServer({ action: 'setSpeed', speed: speed });
+  sendMessage({ action: 'setSpeed', speed: speed });
 };
 
 /**
@@ -25,7 +26,7 @@ const setSpeed = (speed: number): void => {
  */
 const stop = (): void => {
   console.log('stop vehicle');
-  sendMessageToServer({ action: 'stop' });
+  sendMessage({ action: 'stop' });
 };
 
 /**
@@ -33,7 +34,7 @@ const stop = (): void => {
  */
 const emergencyStop = (): void => {
   console.log('emergencyStop vehicle');
-  sendMessageToServer({ action: 'emergencyStop' });
+  sendMessage({ action: 'emergencyStop' });
 };
 
 /**
@@ -43,7 +44,7 @@ const emergencyStop = (): void => {
  */
 const changeDirection = (direction: any): void => {
   console.log('changeDirection service: ', direction);
-  sendMessageToServer({ action: 'changeDirection', direction: direction });
+  sendMessage({ action: 'changeDirection', direction: direction });
 };
 
 /**
@@ -53,7 +54,7 @@ const changeDirection = (direction: any): void => {
  */
 const changeLane = (direction: any): void => {
   console.log('changeLane: ', direction);
-  sendMessageToServer({ action: 'changeLane', direction: direction });
+  sendMessage({ action: 'changeLane', direction: direction });
 };
 
 export default { changeSpeed, setSpeed, stop, emergencyStop, changeDirection, changeLane };

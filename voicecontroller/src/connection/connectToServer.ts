@@ -1,4 +1,5 @@
 import net from 'net';
+import requestController from '../controller/request.controller';
 
 // socket setup
 const port = 4501;
@@ -35,8 +36,8 @@ socket.on('connect', () => {
   console.log('connected');
 });
 
-socket.on('data', (data) => {
-  console.log(JSON.parse(data.toString()));
+socket.on('data', (req) => {
+  requestController.processRequest(JSON.parse(req.toString()));
 });
 
 // handles server error messages

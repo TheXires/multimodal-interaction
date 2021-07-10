@@ -60,12 +60,15 @@ socket.on('end', () => {
  *
  * @param message JSON Object
  */
-export const sendMessageToServer = (message: any) => {
+export const sendMessage = (message: any) => {
   if (socketActive) {
-    socket.write(JSON.stringify(message), (error) => {
+    const json = JSON.stringify(message);
+    console.log('json: ', json)
+    socket.write(json, (error) => {
       if (error) {
         console.log(error.message);
       }
     });
   }
 };
+// {"action":"changeSpeed","amount":10}
