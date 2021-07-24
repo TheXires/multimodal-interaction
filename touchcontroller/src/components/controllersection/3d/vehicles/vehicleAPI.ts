@@ -38,8 +38,16 @@ let vehicles: Vehicle[] = [];
 /**
  * Keeps track of all registered callbacks which want to be notified when the vehicle list changes
  */
-const callbacks: ((newVehiclesList: Vehicle[]) => void)[] = [];
+const callbacks: ((newVehiclesList: Vehicle[], millisSinceLastUpdate?: number) => void)[] = [];
 
+/**
+ * Timestamp marking the last update for the vehicle list
+ */
+let lastUpdatedTimestamp = Date.now();
+/**
+ * The duration the last fetch took (ms)
+ */
+export let delta = 250;
 /**
  * @returns The vehicle list containing all foreign vehicles on the road
  */
@@ -53,47 +61,27 @@ export function getVehicles() {
  */
 export function setVehicles(value: Vehicle[]) {
   vehicles = value;
-  callbacks.forEach((c) => c(value));
+  delta = Date.now() - lastUpdatedTimestamp;
+  callbacks.forEach((c) => c(value, delta));
 }
 
 /**
  * Registers a callback for the vehicle list change event
  * @param func The function to register
  */
-export function registerCallback(func: (newVehiclesList: Vehicle[]) => void) {
-  console.log(callbacks.length);
+export function registerCallback(
+  func: (newVehiclesList: Vehicle[], millisSinceLastUpdate?: number) => void,
+) {
   callbacks.push(func);
-  console.log(callbacks.length);
 }
 
 /* DEBUG/TESING */
-
-// vehicles = [
-//   {
-//     ID: 0,
-//     currentPosition: 0,
-//     lane: Lane.LEFT,
-//     type: VehicleType.CAR,
-//   },
-//   {
-//     ID: 1,
-//     currentPosition: 0,
-//     lane: Lane.RIGHT,
-//     type: VehicleType.TRUCK,
-//   },
-// ];
 
 let a = true;
 setInterval(() => {
   if (a) {
     a = false;
     setVehicles([
-      //   {
-      //     ID: 0,
-      //     currentPosition: 0,
-      //     lane: Lane.LEFT,
-      //     type: VehicleType.CAR,
-      //   },
       {
         ID: 1,
         currentPosition: 0,
@@ -104,12 +92,12 @@ setInterval(() => {
   } else {
     a = true;
     setVehicles([
-      //   {
-      //     ID: 0,
-      //     currentPosition: 1,
-      //     lane: Lane.LEFT,
-      //     type: VehicleType.CAR,
-      //   },
+      {
+        ID: 0,
+        currentPosition: 1,
+        lane: Lane.LEFT,
+        type: VehicleType.CAR,
+      },
       {
         ID: 1,
         currentPosition: 2,
@@ -118,4 +106,4 @@ setInterval(() => {
       },
     ]);
   }
-}, 5000);
+}, 3000);
