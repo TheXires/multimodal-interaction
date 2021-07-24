@@ -1,7 +1,14 @@
-import React, {useEffect} from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { useFrame, useLoader } from '@react-three/fiber';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
-import { delta, getVehicles, Vehicle, VehicleType } from './vehicleAPI';
+import {
+  vehicleDelta,
+  getVehicles,
+  registerCallback,
+  unregisterCallback,
+  Vehicle,
+  VehicleType,
+} from './vehicleAPI';
 import * as truck from '../../../../assets/truck.fbx';
 import * as car from '../../../../assets/car.fbx';
 
@@ -12,18 +19,33 @@ const ForeignVehicle = ({ vehicle }: { vehicle: Vehicle }) => {
   const ref = React.useRef();
   const fbx = useLoader(FBXLoader, vehicle.type == VehicleType.TRUCK ? truck.default : car.default);
 
+  const [positions, dispatch] = useReducer(
+    (oldPosObject: any, newList: Vehicle[]) => {
+      const oldPos: number = oldPosObject.newPos;
+      const newPos: number = newList.find((v) => v.ID == vehicle.ID)!.currentPosition;
+      const travelVector = newPos - oldPos;
+      return { oldPos, newPos, travelVector };
+    },
+    { oldPos: 0, newPos: 0, travelVector: 0 },
+  );
+
   useEffect(() => {
+    registerCallback(dispatch);
     return () => {
-      console.log('called cleanup');
+      unregisterCallback(dispatch);
     };
   }, []);
 
   useFrame(({ clock }) => {
     const v = getVehicles().find((o) => o.ID == vehicle.ID);
     if (ref && ref.current && ref.current.position && v) {
-      const zDelta = ref.current.position.x - v.currentPosition;
-      const distance = zDelta / delta;
-      ref.current.position.z += distance * clock.getElapsedTime();
+      // const distance = zDelta / delta;
+      if (vehicle.type == VehicleType.TRUCK) {
+        // console.log(vehicleDelta)
+        console.log(clock.getDelta() * 1000)
+        
+      }
+      // ref.current.position.z =+ zDelta /  * 10;
     }
   });
 

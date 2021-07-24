@@ -47,7 +47,7 @@ let lastUpdatedTimestamp = Date.now();
 /**
  * The duration the last fetch took (ms)
  */
-export let delta = 250;
+export let vehicleDelta = 250;
 /**
  * @returns The vehicle list containing all foreign vehicles on the road
  */
@@ -61,8 +61,9 @@ export function getVehicles() {
  */
 export function setVehicles(value: Vehicle[]) {
   vehicles = value;
-  delta = Date.now() - lastUpdatedTimestamp;
-  callbacks.forEach((c) => c(value, delta));
+  vehicleDelta = Date.now() - lastUpdatedTimestamp;
+  lastUpdatedTimestamp = Date.now();
+  callbacks.forEach((c) => c(value, vehicleDelta));
 }
 
 /**
@@ -73,6 +74,17 @@ export function registerCallback(
   func: (newVehiclesList: Vehicle[], millisSinceLastUpdate?: number) => void,
 ) {
   callbacks.push(func);
+}
+
+/**
+ * Unregisters a callback for the vehicle list change event
+ * @param func The function to unregister
+ */
+export function unregisterCallback(
+  func: (newVehiclesList: Vehicle[], millisSinceLastUpdate?: number) => void,
+) {
+  const i = callbacks.findIndex((f) => f == func);
+  callbacks.splice(i, 1);
 }
 
 /* DEBUG/TESING */
