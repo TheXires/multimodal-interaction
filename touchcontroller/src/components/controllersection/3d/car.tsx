@@ -6,9 +6,9 @@ import * as modelPath from '../../../assets/Urus.fbx';
 /**
  * The own car placed in the middle of the scene
  */
-const OwnCar = (props: any, ref: any) => {
+const OwnCar = React.forwardRef((props: any, ref: any) => {
   const fbx = useLoader(FBXLoader, modelPath.default);
-  return <primitive scale={0.004} position={[0, 0.3, 0]} object={fbx} />;
-};
+  return <primitive ref={ref} scale={0.004} position={[0, 0.3, 0]} object={fbx} />;
+});
 
 export default OwnCar;
