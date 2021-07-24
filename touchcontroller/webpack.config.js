@@ -77,7 +77,7 @@ function createRenderConfig(isDev) {
                 },
 
                 {
-                    test: /\.(obj|mtl)$/,
+                    test: /\.(obj|mtl|gltf|bin|fbx)$/,
                     type: 'asset/resource'
                 }
 

@@ -3,24 +3,19 @@ import { Canvas } from '@react-three/fiber';
 
 import './Controllersection.css';
 import Street from './3d/sctreet';
-import Car from './3d/car';
 import Camera from './3d/camera';
+import Vehicles from './3d/vehicles/vehicles';
+
 function Controllersection() {
   return (
     <div className="controllersection">
-      <Canvas>
+      <Canvas dpr={[1, 2]} camera={{ fov: 60 }}>
+        <color attach="background" args={['#c7c7c7']} />
+        <ambientLight />
         <Camera locked={false} />
-        <ambientLight intensity={0.1} />
-
-        {/* <mesh position={[2, 0, 0]}>
-          <boxBufferGeometry />
-          <meshPhongMaterial color="red"/>
-        </mesh> */}
-
-        <Suspense fallback={loading}>
-          <Car rotation={[0, Math.PI, 0]} scale={0.5} position={[1.5, 0, 0]} />
+        <Suspense fallback={null}>
+          <Vehicles />
         </Suspense>
-
         <Street />
       </Canvas>
     </div>
@@ -28,7 +23,3 @@ function Controllersection() {
 }
 
 export default Controllersection;
-
-function loading() {
-  <textBufferGeometry args={['loading']} />;
-}
