@@ -5,7 +5,8 @@ import Street from './3d/sctreet';
 import OwnCar from './3d/car';
 import './Controllersection.css';
 import * as THREE from 'three';
-import {handleDragEnd, handleDragOngoing} from '../../services/drag.service';
+import { handleDragEnd, handleDragOngoing } from '../../services/drag.service';
+import Indicator from './3d/indicator';
 
 extend({ DragControls });
 
@@ -76,6 +77,9 @@ function Scene() {
       <ambientLight />
       <Suspense fallback={null}>
         <OwnCar ref={car} />
+      </Suspense>
+      <Suspense fallback={null}>
+        <Indicator />
       </Suspense>
       <Street />
       <primitive object={ex} />

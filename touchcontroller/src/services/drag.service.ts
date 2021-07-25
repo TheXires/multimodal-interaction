@@ -1,3 +1,4 @@
+import { IndicatorState, updateIndicator } from '../components/controllersection/3d/indicator';
 import { changeLane, changeDirection, changeSpeed } from './car.service';
 
 export enum xDirection {
@@ -90,6 +91,7 @@ let updateInterval: any;
 export const handleDragEnd = (x: number, z: number): void => {
   clearInterval(updateInterval);
   updateInterval = undefined;
+  updateIndicator(selectIndicator({ horizontal: xDirection.MIDDLE, vertical: zDirection.MIDDLE }));
   const action = translateActionFormCoordinates(x, z);
   if (action.vertical == zDirection.MIDDLE) {
     if (action.horizontal == xDirection.LEFT) {
@@ -111,6 +113,7 @@ export const handleDragEnd = (x: number, z: number): void => {
  */
 export const handleDragOngoing = (x: number, z: number): void => {
   lastDraggedAction = translateActionFormCoordinates(x, z);
+  updateIndicator(selectIndicator(lastDraggedAction));
   if (!updateInterval) {
     updateInterval = setInterval(() => {
       if (lastDraggedAction.horizontal == xDirection.MIDDLE) {
@@ -122,4 +125,30 @@ export const handleDragOngoing = (x: number, z: number): void => {
       }
     }, 750);
   }
+};
+
+/**
+ * Determines the currently needed indicator icon based on a command
+ * @param action The command to analyze
+ * @returns An indicator state
+ */
+const selectIndicator = (action: Command): IndicatorState => {
+  if (action.vertical == zDirection.MIDDLE) {
+    if (action.horizontal == xDirection.LEFT) {
+      return IndicatorState.LANE_CHANGE_LEFT;
+    } else if (action.horizontal == xDirection.RIGHT) {
+      return IndicatorState.LANE_CHANGE_RIGHT;
+    }
+  } else if (action.vertical == zDirection.UP) {
+    if (action.horizontal == xDirection.LEFT) {
+      return IndicatorState.TURN_LEFT;
+    } else if (action.horizontal == xDirection.RIGHT) {
+      return IndicatorState.TURN_RIGHT;
+    } else if (action.horizontal == xDirection.MIDDLE) {
+      return IndicatorState.INCREASE_SPEED;
+    }
+  } else if (action.vertical == zDirection.DOWN && action.horizontal == xDirection.MIDDLE) {
+    return IndicatorState.DECREASE_SPEED;
+  }
+  return IndicatorState.NONE;
 };
