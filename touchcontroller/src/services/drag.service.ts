@@ -1,5 +1,14 @@
 import { IndicatorState, updateIndicator } from '../components/Controllersection/3d/indicator';
-import { changeLane, changeDirection, changeSpeed } from './car.service';
+import {changeLane, changeDirection, changeSpeed} from './car.service';
+
+/**
+ * Defines the offset the car has to be moved to be considered in certain state and trigger the underlying command (x Axis)
+ */
+const horizontalThreshhold = 0.4
+/**
+ * Defines the offset the car has to be moved to be considered in certain state and trigger the underlying command (z Axis)
+ */
+const verticalThreshhold = 1.6
 
 export enum xDirection {
   LEFT,
@@ -22,13 +31,13 @@ export interface Command {
  * This translates the car coordinates to a requested event
  */
 export const translateActionFormCoordinates = (x: number, z: number): Command => {
-  if (x > 0.4) {
-    if (z > 0.7) {
+  if (x > horizontalThreshhold) {
+    if (z > verticalThreshhold) {
       return {
         horizontal: xDirection.LEFT,
         vertical: zDirection.UP,
       };
-    } else if (z < -0.7) {
+    } else if (z < -verticalThreshhold) {
       return {
         horizontal: xDirection.LEFT,
         vertical: zDirection.DOWN,
@@ -39,13 +48,13 @@ export const translateActionFormCoordinates = (x: number, z: number): Command =>
         vertical: zDirection.MIDDLE,
       };
     }
-  } else if (x < -0.4) {
-    if (z > 0.7) {
+  } else if (x < -horizontalThreshhold) {
+    if (z > verticalThreshhold) {
       return {
         horizontal: xDirection.RIGHT,
         vertical: zDirection.UP,
       };
-    } else if (z < -0.7) {
+    } else if (z < -verticalThreshhold) {
       return {
         horizontal: xDirection.RIGHT,
         vertical: zDirection.DOWN,
@@ -57,12 +66,12 @@ export const translateActionFormCoordinates = (x: number, z: number): Command =>
       };
     }
   } else {
-    if (z > 0.7) {
+    if (z > verticalThreshhold) {
       return {
         horizontal: xDirection.MIDDLE,
         vertical: zDirection.UP,
       };
-    } else if (z < -0.7) {
+    } else if (z < -verticalThreshhold) {
       return {
         horizontal: xDirection.MIDDLE,
         vertical: zDirection.DOWN,
