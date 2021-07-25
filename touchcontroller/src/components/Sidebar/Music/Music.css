@@ -1,0 +1,37 @@
+.music {
+  background-color: #8fb0ff;
+  max-height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.music__data {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+
+.music__song {
+  color: white;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.music__artist {
+  color: white;
+  font-size: 1.5rem;
+}
+
+.music__controlls {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  bottom: 1rem;
+  justify-content: space-around;
+}
+
+.music__buttonControlls {
+  color: white;
+  font-size: 3rem;
+}

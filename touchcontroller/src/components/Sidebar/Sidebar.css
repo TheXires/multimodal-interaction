@@ -6,10 +6,9 @@
   box-sizing: border-box;
   display: grid; 
   grid-template-columns: 1fr; 
-  grid-template-rows: 1fr 1fr 1fr 1fr; 
-  gap: 1em 0px; 
+  grid-template-rows: 1fr 1fr 1fr; 
+  gap: 1rem 0px; 
   grid-template-areas: 
-    "."
     "."
     "."
     "."; 
