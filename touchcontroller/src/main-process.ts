@@ -21,7 +21,7 @@ function createWindow() {
 
     if (IS_DEV) {
         win.loadURL(DEV_SERVER_URL);
-        win.webContents.openDevTools();
+        // win.webContents.openDevTools();
     }
     else {
         win.loadFile(HTML_FILE_PATH);

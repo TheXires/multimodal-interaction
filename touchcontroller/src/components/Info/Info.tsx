@@ -3,8 +3,8 @@ import './Info.css';
 
 const Info = () => {
   return (
-    <div className="info">
-      <div className="info__container">Info</div>
+    <div style={{ borderRadius: 25, backgroundColor: '#8FB0FF', padding: '1rem' }}>
+      <div className="info__title">Geschwindigkeit</div>
     </div>
   );
 };

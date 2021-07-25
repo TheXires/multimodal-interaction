@@ -4,13 +4,13 @@
   width: 30vw;
   padding: 1rem;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-}
-
-.sidebar__cardContainer {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: space-around;
+  display: grid; 
+  grid-template-columns: 1fr; 
+  grid-template-rows: 1fr 1fr 1fr 1fr; 
+  gap: 1em 0px; 
+  grid-template-areas: 
+    "."
+    "."
+    "."
+    "."; 
 }

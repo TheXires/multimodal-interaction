@@ -1,5 +1,4 @@
-.info {
-  background-color: pink;
-  height: 25%;
-  box-sizing: border-box;
+.info__title {
+  color: white;
+  font-size: 2rem;
 }
