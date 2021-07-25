@@ -9,25 +9,18 @@ console.log(`listening at http://localhost:${port}`);
 const clients = [];
 
 server.on('connection', (socket) => {
-  console.log('connection established');
   clients.push(socket);
+  console.log('connection established \n active connections: ', clients.length);
   socket.on('data', (req) => {
     console.log(JSON.parse(req.toString()));
     requestController.processRequest(JSON.parse(req.toString()));
-    if (JSON.parse(req.toString()).action == 'changeSpeed') {
-      socket.write(JSON.stringify({ action: 'test2' }), (error) => {
-        console.log(error);
-      });
-    }
   });
 
   socket.on('end', () => {
-    console.log('client disconnected')
     let index = clients.indexOf(socket);
     if (index !== -1) {
-      console.log(clients.length);
       clients.splice(index, 1);
-      console.log(clients.length);
+      console.log('client disconnected. \n active connections: ', clients.length);
     }
   });
 });

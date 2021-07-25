@@ -49,6 +49,7 @@ const keywordCallback = function (keyword: number) {
 export const forceListening = () => {
   console.log(`Activated through touchController`);
   stateController.startListening();
+  // TODO hier picovoice manuell aktivieren
 };
 
 const inferenceCallback = function (inference: any) {

@@ -1,8 +1,24 @@
 import carService from '../service/car.service';
 import uiService from '../service/ui.service';
+import infotainmendService from '../service/infotainment.service';
+import voiceService from '../service/voice.service';
 
 const processRequest = (req): void => {
   switch (req.action) {
+    // voicecontroller only
+    case 'startListening':
+      uiService.listening();
+      break;
+    case 'stopListening':
+      uiService.processing();
+      break;
+
+    // touch controller only
+    case 'activateMic':
+      voiceService.activateMic();
+      break;
+
+    // both
     case 'changeSpeed':
       carService.changeSpeed(req.amount);
       break;
@@ -21,11 +37,11 @@ const processRequest = (req): void => {
     case 'changeLane':
       carService.changeLane(req.direction);
       break;
-    case 'startListening':
-      uiService.listening();
+    case 'changeTitle':
+      infotainmendService.changeTitle(req.title);
       break;
-    case 'stopListening':
-      uiService.processing();
+    case 'changeVolume':
+      infotainmendService.changeVolume(req.volume);
       break;
     default:
       console.log('invalid command');
