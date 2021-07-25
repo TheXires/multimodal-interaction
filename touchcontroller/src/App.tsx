@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import './App.css';
 import Clock from './components/clock/clock';
 import Sidebar from './components/sidebar/Sidebar';

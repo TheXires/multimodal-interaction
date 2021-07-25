@@ -1,6 +1,6 @@
 const path = require("path");
 const HtmlPlugin = require("html-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 const DefinePlugin = require("webpack").DefinePlugin;
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const webpack = require("webpack");
@@ -64,9 +64,9 @@ function createRenderConfig(isDev) {
                 {
                     // transforms font files in base64 data. That's the only way I could import fonts in .scss files.
                     test: /\.(jpg|jpeg|png|gif|woff|woff2|eot|ttf|svg)$/,
-                    use: [{ loader: 'url-loader?limit=100000'}]
+                    use: [{loader: 'url-loader?limit=100000'}]
                 },
-                
+
                 {
                     test: /\.(js|jsx|ts|tsx)$/,
                     exclude: /node_modules/,
@@ -76,13 +76,18 @@ function createRenderConfig(isDev) {
                     }
                 },
 
+                {
+                    test: /\.(obj|mtl|gltf|bin|fbx)$/,
+                    type: 'asset/resource'
+                }
+
             ]
         },
 
         plugins: [
 
             new CleanWebpackPlugin({
-                cleanOnceBeforeBuildPatterns: [ "**/*", "!main-process.*.js"] // config for electron-main deletes this file
+                cleanOnceBeforeBuildPatterns: ["**/*", "!main-process.*.js"] // config for electron-main deletes this file
             }),
 
             new HtmlPlugin({
@@ -154,7 +159,7 @@ function createMainConfig(isDev) {
             // electron-packager needs the package.json file. the "../" is because context is set to the ./src folder
             new CopyWebpackPlugin({
                 patterns: [
-                    {from: "package.json", to: "./", context:"../"}
+                    {from: "package.json", to: "./", context: "../"}
                 ]
             })
         ]
@@ -163,7 +168,7 @@ function createMainConfig(isDev) {
 
 
 
-module.exports = function (env) {
+module.exports = function(env) {
 
     // env variable is passed by webpack through the cli. see package.json scripts.
     const isDev = !!env.development;
