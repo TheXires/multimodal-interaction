@@ -9,7 +9,7 @@ import * as THREE from 'three';
 extend({ DragControls });
 
 const ex = new THREE.Mesh(
-  new THREE.BoxGeometry(1.5, 1.5, 1.5),
+  new THREE.BoxGeometry(1.1, 1.3, 1.9),
   new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0 }),
 );
 
