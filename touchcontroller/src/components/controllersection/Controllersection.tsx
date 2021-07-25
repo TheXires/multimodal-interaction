@@ -39,15 +39,17 @@ function Scene() {
       car.current.position.z = event.object.position.z;
       handleDragOngoing(car.current.position.x, car.current.position.z);
     });
+
     // detect drag location and snap car back
     dragControls.current.addEventListener('dragend', function (event) {
-      const tolerance = 0.1;
+      const tolerance = 0.05;
 
       handleDragEnd(car.current.position.x, car.current.position.z);
 
       event.object.position.y = 0;
       event.object.position.z = 0;
       event.object.position.x = 0;
+      // snap car back to middle
       const i = setInterval(() => {
         const xDistance = 0 - car.current.position.x;
         const zDistance = 0 - car.current.position.z;
