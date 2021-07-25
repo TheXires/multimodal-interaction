@@ -1,4 +1,4 @@
-import { IndicatorState, updateIndicator } from '../components/controllersection/3d/indicator';
+import { IndicatorState, updateIndicator } from '../components/Controllersection/3d/indicator';
 import { changeLane, changeDirection, changeSpeed } from './car.service';
 
 export enum xDirection {
