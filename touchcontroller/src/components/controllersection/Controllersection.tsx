@@ -5,6 +5,7 @@ import Street from './3d/sctreet';
 import OwnCar from './3d/car';
 import './Controllersection.css';
 import * as THREE from 'three';
+import { handleDragInput } from '../../services/car.service';
 
 extend({ DragControls });
 
@@ -29,19 +30,19 @@ function Scene() {
     camera.rotateX(-Math.PI * 0.2);
   }, []);
 
-  // add drag listener
+  // level car on y axis on drag
   useEffect(() => {
     dragControls.current.addEventListener('drag', function (event) {
       event.object.position.y = 0;
       event.object.position.z += event.object.position.z * 0.6;
-      car.current.position.set(
-        event.object.position.x,
-        car.current.position.y,
-        event.object.position.z,
-      );
+      car.current.position.x = event.object.position.x;
+      car.current.position.z = event.object.position.z;
     });
+    // detect drag location and snap car back
     dragControls.current.addEventListener('dragend', function (event) {
       const tolerance = 0.1;
+
+      handleDragInput(car.current.position.x, car.current.position.z);
 
       event.object.position.y = 0;
       event.object.position.z = 0;
