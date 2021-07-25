@@ -9,9 +9,8 @@ import * as THREE from 'three';
 extend({ DragControls });
 
 const ex = new THREE.Mesh(
-  new THREE.BoxGeometry(2, 2, 2),
+  new THREE.BoxGeometry(1.5, 1.5, 1.5),
   new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0 }),
-  // new THREE.MeshBasicMaterial({ color: 0xffffff }),
 );
 
 function Scene() {
@@ -35,7 +34,35 @@ function Scene() {
     dragControls.current.addEventListener('drag', function (event) {
       event.object.position.y = 0;
       event.object.position.z += event.object.position.z * 0.6;
-      car.current.position.set(event.object.position.x, car.current.position.y, event.object.position.z)
+      car.current.position.set(
+        event.object.position.x,
+        car.current.position.y,
+        event.object.position.z,
+      );
+    });
+    dragControls.current.addEventListener('dragend', function (event) {
+      const tolerance = 0.1;
+
+      event.object.position.y = 0;
+      event.object.position.z = 0;
+      event.object.position.x = 0;
+      const i = setInterval(() => {
+        const xDistance = 0 - car.current.position.x;
+        const zDistance = 0 - car.current.position.z;
+
+        if (Math.abs(car.current.position.x) > tolerance) {
+          car.current.position.x += xDistance / 30;
+        }
+        if (Math.abs(car.current.position.z) > tolerance) {
+          car.current.position.z += zDistance / 40;
+        }
+        if (
+          Math.abs(car.current.position.x) < tolerance &&
+          Math.abs(car.current.position.z) < tolerance
+        ) {
+          clearInterval(i);
+        }
+      }, 5);
     });
   }, [dragControls.current]);
 
