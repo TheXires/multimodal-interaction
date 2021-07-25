@@ -42,7 +42,7 @@ const emergencyStop = (): void => {
  *
  * @param direction direction the vehicle should turn to
  */
-const changeDirection = (direction: any): void => {
+const changeDirection = (direction: 'links' | 'rechts' | 'geradeaus' ): void => {
   console.log('changeDirection service: ', direction);
   sendMessage({ action: 'changeDirection', direction: direction });
 };
@@ -52,7 +52,7 @@ const changeDirection = (direction: any): void => {
  *
  * @param direction direction the vehicle should change the lane to
  */
-const changeLane = (direction: any): void => {
+const changeLane = (direction: 'links' | 'rechts'): void => {
   console.log('changeLane: ', direction);
   sendMessage({ action: 'changeLane', direction: direction });
 };
