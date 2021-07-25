@@ -5,7 +5,7 @@ import Street from './3d/sctreet';
 import OwnCar from './3d/car';
 import './Controllersection.css';
 import * as THREE from 'three';
-import { handleDragInput } from '../../services/car.service';
+import {handleDragEnd, handleDragOngoing} from '../../services/drag.service';
 
 extend({ DragControls });
 
@@ -37,12 +37,13 @@ function Scene() {
       event.object.position.z += event.object.position.z * 0.6;
       car.current.position.x = event.object.position.x;
       car.current.position.z = event.object.position.z;
+      handleDragOngoing(car.current.position.x, car.current.position.z);
     });
     // detect drag location and snap car back
     dragControls.current.addEventListener('dragend', function (event) {
       const tolerance = 0.1;
 
-      handleDragInput(car.current.position.x, car.current.position.z);
+      handleDragEnd(car.current.position.x, car.current.position.z);
 
       event.object.position.y = 0;
       event.object.position.z = 0;

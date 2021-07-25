@@ -1,5 +1,4 @@
 import { sendMessage } from '../connection/connectToServer';
-import { translateActionFormCoordinates, xDirection, zDirection } from './drag-util.service';
 
 /**
  * change the vehicles speed
@@ -43,7 +42,7 @@ export const emergencyStop = (): void => {
  *
  * @param direction direction the vehicle should turn to
  */
-export const changeDirection = (direction: 'links' | 'rechts' | 'geradeaus'): void => {
+export const changeDirection = (direction: 'links' | 'rechts'): void => {
   console.log('changeDirection service: ', direction);
   sendMessage({ action: 'changeDirection', direction: direction });
 };
@@ -56,16 +55,4 @@ export const changeDirection = (direction: 'links' | 'rechts' | 'geradeaus'): vo
 export const changeLane = (direction: 'links' | 'rechts'): void => {
   console.log('changeLane: ', direction);
   sendMessage({ action: 'changeLane', direction: direction });
-};
-
-/**
- * Handle the input event and its data to send requested action to server
- */
-export const handleDragInput = (x: number, z: number): void => {
-  const action = translateActionFormCoordinates(x, z);
-  if (action.horizontal == xDirection.LEFT) {
-    if (action.vertical == zDirection.MIDDLE) {
-      changeLane()
-    }
-  }
 };
