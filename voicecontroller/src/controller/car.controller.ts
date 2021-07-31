@@ -26,16 +26,29 @@ const stop = (): void => {
   carService.stop();
 };
 
+/**
+ * 
+ */
 const emergencyStop = (): void => {
   carService.emergencyStop();
 };
 
+/**
+ * 
+ * @param slots 
+ * @returns 
+ */
 const changeDirection = (slots: any): void => {
   const direction = slots.direction || undefined;
   if (direction == undefined) return;
   carService.changeDirection(direction);
 };
 
+/**
+ * 
+ * @param slots 
+ * @returns 
+ */
 const changeLane = (slots: any): void => {
   const direction = slots.direction || undefined;
   if (direction == undefined) return;
