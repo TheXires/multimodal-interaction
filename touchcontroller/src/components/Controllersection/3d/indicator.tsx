@@ -1,23 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import { useLoader } from '@react-three/fiber';
+import { Texture, TextureLoader } from 'three';
+import { IndicatorState } from '../../../types/indicatorState';
 import * as laneChangeLeft from '../../../assets/laneChangeLeft.png';
 import * as laneChangeRight from '../../../assets/laneChangeRight.png';
 import * as turnRight from '../../../assets/turnRight.png';
 import * as turnLeft from '../../../assets/turnLeft.png';
 import * as forwards from '../../../assets/forwards.png';
 import * as backwards from '../../../assets/backwards.png';
-import { useLoader } from '@react-three/fiber';
-import { Texture, TextureLoader } from 'three';
-import { useRef } from 'react';
-
-export enum IndicatorState {
-  LANE_CHANGE_LEFT,
-  LANE_CHANGE_RIGHT,
-  TURN_LEFT,
-  TURN_RIGHT,
-  INCREASE_SPEED,
-  DECREASE_SPEED,
-  NONE,
-}
 
 export let updateIndicator: (state: IndicatorState) => void;
 
@@ -65,7 +55,7 @@ const Indicator = (props: any) => {
       <meshBasicMaterial
         ref={ref}
         attach="material"
-        transparent={true}
+        transparent
         map={laneChangeLeftTexture}
         opacity={show ? 1 : 0}
       />

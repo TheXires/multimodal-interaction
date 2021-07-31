@@ -1,31 +1,18 @@
-import { IndicatorState, updateIndicator } from '../components/Controllersection/3d/indicator';
-import {changeLane, changeDirection, changeSpeed} from './car.service';
+import { updateIndicator } from '../components/Controllersection/3d/indicator';
+import { Command } from '../types/command';
+import {IndicatorState} from '../types/indicatorState';
+import { xDirection } from '../types/xDirection';
+import { zDirection } from '../types/zDirection';
+import { changeLane, changeDirection, changeSpeed } from './car.service';
 
 /**
  * Defines the offset the car has to be moved to be considered in certain state and trigger the underlying command (x Axis)
  */
-const horizontalThreshhold = 0.4
+const horizontalThreshhold = 0.4;
 /**
  * Defines the offset the car has to be moved to be considered in certain state and trigger the underlying command (z Axis)
  */
-const verticalThreshhold = 1.6
-
-export enum xDirection {
-  LEFT,
-  MIDDLE,
-  RIGHT,
-}
-
-export enum zDirection {
-  UP,
-  MIDDLE,
-  DOWN,
-}
-
-export interface Command {
-  horizontal: xDirection;
-  vertical: zDirection;
-}
+const verticalThreshhold = 1.6;
 
 /**
  * This translates the car coordinates to a requested event
