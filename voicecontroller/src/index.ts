@@ -1,6 +1,3 @@
-// IMPORTANT if after npm start no logs appear, just retry once
-// is for some reason not working in the same instance with dist folder creation
-
 import carController from './controller/car.controller';
 import stateController from './controller/state.controller';
 import { Inference } from './types/inference';

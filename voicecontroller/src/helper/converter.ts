@@ -494,31 +494,3 @@ export const convertTextToNumber = (text: string | undefined): number | undefine
   }
   return result;
 };
-
-/**
- * helper methode to generate german numbers as string and print to console
- */
-export const converterGenerator20to99 = (): void => {
-  const tens = [
-    'zwanzig',
-    'dreißig',
-    'vierzig',
-    'fünfzig',
-    'sechzig',
-    'siebzig',
-    'achtzig',
-    'neunzig',
-  ];
-  const single = ['', 'ein', 'zwei', 'drei', 'vier', 'fünf', 'sechs', 'sieben', 'acht', 'neun'];
-  let j = 0;
-  for (let i = 20; i < 100; i++) {
-    console.log(
-      `case '${single[i % 10]}${i % 10 != 0 ? 'und' : ''}${tens[j]}':
-        result = ${i};
-        break;`,
-    );
-    if (i % 10 === 0 && i != 40) {
-      j++;
-    }
-  }
-};

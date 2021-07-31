@@ -26,11 +26,16 @@ server.on('connection', (socket) => {
   });
 });
 
+/**
+ * send message to clients
+ *
+ * @param message JSON Object
+ */
 export const sendMessage = (message: Action): void => {
   clients.forEach((socket) => {
     socket.write(JSON.stringify(message), (error) => {
       if (error) {
-        console.log(error.message);
+        console.error(error.message);
       }
     });
   })

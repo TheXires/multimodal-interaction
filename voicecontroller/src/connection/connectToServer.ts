@@ -11,7 +11,6 @@ let socketActive = false;
  */
 const connectToServer = () => {
   socket.destroy();
-  console.log('test: ', socket.destroyed);
   socket.setTimeout(0);
   socket.connect(port);
 };
@@ -65,7 +64,7 @@ export const sendMessageToServer = (message: Action): void => {
   if (socketActive) {
     socket.write(JSON.stringify(message), (error) => {
       if (error) {
-        console.log('error in write: ', error.message);
+        console.error(error.message);
       }
     });
   }
