@@ -63,9 +63,7 @@ socket.on('end', () => {
  */
 export const sendMessageToServer = (message: Action): void => {
   if (socketActive) {
-    const ab = JSON.stringify(message);
-    console.log('ab: ', ab);
-    socket.write(ab, (error) => {
+    socket.write(JSON.stringify(message), (error) => {
       if (error) {
         console.log('error in write: ', error.message);
       }

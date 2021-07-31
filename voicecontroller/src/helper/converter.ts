@@ -1,5 +1,5 @@
 /**
- * convers a germand number between 1 and 130 from string to number
+ * converts a german number between 1 and 130 from string to number
  *
  * @param text number between 1 and 130 as german text
  * @returns the string value as number or undefined if string is invalid
@@ -495,6 +495,9 @@ export const convertTextToNumber = (text: string): number | undefined => {
   return result;
 };
 
+/**
+ * helper methode to generate german numbers as string and print to console
+ */
 export const converterGenerator20to99 = () => {
   const tens = [
     'zwanzig',
@@ -512,7 +515,7 @@ export const converterGenerator20to99 = () => {
     console.log(
       `case '${single[i % 10]}${i % 10 != 0 ? 'und' : ''}${tens[j]}':
         result = ${i};
-        break;`
+        break;`,
     );
     if (i % 10 === 0 && i != 40) {
       j++;

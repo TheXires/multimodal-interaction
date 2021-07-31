@@ -1,10 +1,8 @@
 import { convertTextToNumber } from '../helper/converter';
 import carService from '../services/car.service';
-// TODO kommentare hinzufügen
 
 /**
- * 
- * @param slots 
+ * change and set the vehicles speed
  */
 const changeSpeed = (slots: any): void => {
   const speed = convertTextToNumber(slots.speed) || 5;
@@ -20,23 +18,21 @@ const changeSpeed = (slots: any): void => {
 };
 
 /**
- * 
+ * stop the vehicle at the next possibility
  */
 const stop = (): void => {
   carService.stop();
 };
 
 /**
- * 
+ * emergency stop the vehicle save as fast as possible
  */
 const emergencyStop = (): void => {
   carService.emergencyStop();
 };
 
 /**
- * 
- * @param slots 
- * @returns 
+ * change the direction of the vehicle at the next crossroad
  */
 const changeDirection = (slots: any): void => {
   const direction = slots.direction || undefined;
@@ -45,9 +41,7 @@ const changeDirection = (slots: any): void => {
 };
 
 /**
- * 
- * @param slots 
- * @returns 
+ * change the lane of the vehicle
  */
 const changeLane = (slots: any): void => {
   const direction = slots.direction || undefined;

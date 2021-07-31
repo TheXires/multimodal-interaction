@@ -22,7 +22,7 @@ const setSpeed = (speed: number): void => {
 };
 
 /**
- * stops at the next possiblity
+ * stops at the next possibility
  */
 const stop = (): void => {
   console.log('stop vehicle');
