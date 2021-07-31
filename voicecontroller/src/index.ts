@@ -90,7 +90,7 @@ const recording = recorder.record({
   recorder: 'arecord',
 });
 
-var frameAccumulator: number[] = [];
+let frameAccumulator: number[] = [];
 
 recording.stream().on('error', () => {
   console.error('recorder stream error');
@@ -98,15 +98,15 @@ recording.stream().on('error', () => {
 
 recording.stream().on('data', (data: Buffer) => {
   // Two bytes per Int16 from the data buffer
-  let newFrames16 = new Array(data.length / 2);
-  for (let i = 0; i < data.length; i += 2) {
+  const newFrames16 = new Array(data.length / 2);
+  for (const i = 0; i < data.length; i += 2) {
     newFrames16[i / 2] = data.readInt16LE(i);
   }
 
   // Split the incoming PCM integer data into arrays of size Picovoice.frameLength. If there's insufficient frames, or a remainder,
   // store it in 'frameAccumulator' for the next iteration, so that we don't miss any audio data
   frameAccumulator = frameAccumulator.concat(newFrames16);
-  let frames = chunkArray(frameAccumulator, frameLength);
+  const frames = chunkArray(frameAccumulator, frameLength);
 
   if (frames[frames.length - 1].length !== frameLength) {
     // store remainder from divisions of frameLength
@@ -115,7 +115,7 @@ recording.stream().on('data', (data: Buffer) => {
     frameAccumulator = [];
   }
 
-  for (let frame of frames) {
+  for (const frame of frames) {
     handle.process(frame);
   }
 });

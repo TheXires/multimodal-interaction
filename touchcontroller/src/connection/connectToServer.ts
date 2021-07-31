@@ -61,7 +61,7 @@ socket.on('end', () => {
  *
  * @param message JSON Object
  */
-export const sendMessage = (message: Action) => {
+export const sendMessage = (message: Action): void => {
   if (socketActive) {
     const json = JSON.stringify(message);
     console.log('json: ', json)

@@ -87,7 +87,7 @@ function Scene(): JSX.Element {
   }, [dragControls.current]);
 
   return (
-    <React.Fragment>
+    <>
       <color attach="background" args={['#c7c7c7']} />
       <ambientLight />
       <Suspense fallback={null}>
@@ -99,11 +99,11 @@ function Scene(): JSX.Element {
       <Street />
       <primitive object={box} />
       <dragControls ref={dragControls} args={[[box], camera, domElement]} />
-    </React.Fragment>
+    </>
   );
 }
 
-function Controllersection() {
+const Controllersection = (): JSX.Element => {
   return (
     <div className="controllersection">
       <Canvas dpr={[1, 2]} camera={{ fov: 60 }}>

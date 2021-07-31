@@ -20,12 +20,12 @@ export let updateIndicator: (state: IndicatorState) => void;
  */
 const Indicator = (): JSX.Element => {
   const [show, setShow] = useState(false);
-  const laneChangeLeftTexture = useLoader(TextureLoader, laneChangeLeft.default) as Texture;
-  const laneChangeRightTexture = useLoader(TextureLoader, laneChangeRight.default) as Texture;
-  const turnRightTexture = useLoader(TextureLoader, turnRight.default) as Texture;
-  const turnLeftTexture = useLoader(TextureLoader, turnLeft.default) as Texture;
-  const forwardsTexture = useLoader(TextureLoader, forwards.default) as Texture;
-  const backwardsTexture = useLoader(TextureLoader, backwards.default) as Texture;
+  const laneChangeLeftTexture = useLoader(TextureLoader, laneChangeLeft.default);
+  const laneChangeRightTexture = useLoader(TextureLoader, laneChangeRight.default);
+  const turnRightTexture = useLoader(TextureLoader, turnRight.default);
+  const turnLeftTexture = useLoader(TextureLoader, turnLeft.default);
+  const forwardsTexture = useLoader(TextureLoader, forwards.default);
+  const backwardsTexture = useLoader(TextureLoader, backwards.default);
   const ref = useRef();
 
   /**
