@@ -2,7 +2,7 @@ import * as net from 'net';
 import requestController from './controller/request.controller';
 import { Action } from './types/actions';
 
-// setup json-socket server
+// setup socket server
 const port = 4501;
 export const server = net.createServer();
 server.listen(port);

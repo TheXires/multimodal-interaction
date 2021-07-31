@@ -88,7 +88,7 @@ function Scene(): JSX.Element {
 
   return (
     <>
-      <color attach="background" args={['#c7c7c7']} />
+      <color attach="background" args={['#ebecff']} />
       <ambientLight />
       <Suspense fallback={null}>
         <OwnCar ref={car} />

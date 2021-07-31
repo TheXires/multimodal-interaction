@@ -8,7 +8,7 @@ const Street = (): JSX.Element => {
   return (
     <mesh ref={mesh} rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 40]}>
       <planeGeometry args={[1.7, 100]} />
-      <meshPhongMaterial color={'#dbdbdb'} />
+      <meshPhongMaterial color={'#3B3B3B'} />
     </mesh>
   );
 };

@@ -57,7 +57,7 @@ const Indicator = (): JSX.Element => {
   });
 
   return (
-    <mesh position={[0, 0, 6]} rotation={[-Math.PI * 0.5, 0, Math.PI]}>
+    <mesh position={[0, 0.002, 6]} rotation={[-Math.PI * 0.5, 0, Math.PI]}>
       <planeGeometry args={[6, 7]} />
       <meshBasicMaterial
         ref={ref}
