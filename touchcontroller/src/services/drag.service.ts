@@ -1,6 +1,6 @@
 import { updateIndicator } from '../components/Controllersection/3d/indicator';
 import { Command } from '../types/command';
-import {IndicatorState} from '../types/indicatorState';
+import { IndicatorState } from '../types/indicatorState';
 import { xDirection } from '../types/xDirection';
 import { zDirection } from '../types/zDirection';
 import { changeLane, changeDirection, changeSpeed } from './car.service';
@@ -16,12 +16,12 @@ const verticalThreshhold = 1.6;
 /**
  * last coordinates the drag event sent
  */
- let lastDraggedAction: Command;
- /**
-  * the interval instance handling the updates
-  */
+let lastDraggedAction: Command;
+/**
+ * the interval instance handling the updates
+ */
 let updateInterval: NodeJS.Timeout;
- 
+
 /**
  * this translates the car coordinates to a requested event
  */

@@ -1,5 +1,7 @@
 import net from 'net';
+import {updateMicIndicator} from '../components/Controllersection/MicIndicator';
 import { Action } from '../types/actions';
+import {MicIndicatorState} from '../types/micIndicatorState';
 
 const port = 4501;
 let socket = net.createConnection(port);
@@ -30,6 +32,7 @@ socket.on('connect', () => {
 });
 
 socket.on('data', (data) => {
+  // updateMicIndicator(MicIndicatorState.PROCESSING)
   console.log(JSON.parse(data.toString()));
 });
 

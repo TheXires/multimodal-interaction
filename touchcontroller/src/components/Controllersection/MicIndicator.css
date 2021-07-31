@@ -1,0 +1,18 @@
+.indicator {
+  position: absolute;
+  z-index: 10;
+  bottom: 1rem;
+  left: 1rem;
+  padding: 1rem;
+  border-radius: 2rem;
+  transition: .3s;
+}
+.indicator.micStateOff {
+  background-color: #ec8993;
+}
+.indicator.micStateOn {
+  background-color: #a1e49d;
+}
+.indicator.micStateProcessing {
+  background-color: #f5d681;
+}

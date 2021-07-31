@@ -7,6 +7,7 @@ import './Controllersection.css';
 import * as THREE from 'three';
 import { handleDragEnd, handleDragOngoing } from '../../services/drag.service';
 import Indicator from './3d/indicator';
+import MicIndicator from './MicIndicator';
 
 /**
  * Use of the native threejs drag controls
@@ -106,6 +107,7 @@ function Scene(): JSX.Element {
 const Controllersection = (): JSX.Element => {
   return (
     <div className="controllersection">
+      <MicIndicator />
       <Canvas dpr={[1, 2]} camera={{ fov: 60 }}>
         <Scene />
       </Canvas>
