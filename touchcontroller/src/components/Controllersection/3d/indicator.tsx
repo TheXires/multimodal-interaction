@@ -9,12 +9,16 @@ import * as turnLeft from '../../../assets/turnLeft.png';
 import * as forwards from '../../../assets/forwards.png';
 import * as backwards from '../../../assets/backwards.png';
 
+/**
+ * Current state of the indicator shown in the scene. Updates dynamically with the currently chosen action.
+ * Gets hydrated by the service to gain access from outside this module.
+ */
 export let updateIndicator: (state: IndicatorState) => void;
 
 /**
  * The own car placed in the middle of the scene
  */
-const Indicator = (props: any) => {
+const Indicator = (): JSX.Element => {
   const [show, setShow] = useState(false);
   const laneChangeLeftTexture = useLoader(TextureLoader, laneChangeLeft.default) as Texture;
   const laneChangeRightTexture = useLoader(TextureLoader, laneChangeRight.default) as Texture;
@@ -24,6 +28,9 @@ const Indicator = (props: any) => {
   const backwardsTexture = useLoader(TextureLoader, backwards.default) as Texture;
   const ref = useRef();
 
+  /**
+   * Update the indicator on rerender.
+   */
   useEffect(() => {
     updateIndicator = (state) => {
       if (!ref.current) {
@@ -50,7 +57,7 @@ const Indicator = (props: any) => {
   });
 
   return (
-    <mesh {...props} position={[0, 0, 6]} rotation={[-Math.PI * 0.5, 0, Math.PI]}>
+    <mesh position={[0, 0, 6]} rotation={[-Math.PI * 0.5, 0, Math.PI]}>
       <planeGeometry args={[6, 7]} />
       <meshBasicMaterial
         ref={ref}

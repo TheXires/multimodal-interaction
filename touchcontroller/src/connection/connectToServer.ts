@@ -1,4 +1,5 @@
 import net from 'net';
+import {Action} from '../types/actions';
 
 const port = 4501;
 let socket = net.createConnection(port);
@@ -60,7 +61,7 @@ socket.on('end', () => {
  *
  * @param message JSON Object
  */
-export const sendMessage = (message: any) => {
+export const sendMessage = (message: Action) => {
   if (socketActive) {
     const json = JSON.stringify(message);
     console.log('json: ', json)

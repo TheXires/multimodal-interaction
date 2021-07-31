@@ -8,14 +8,24 @@ import * as THREE from 'three';
 import { handleDragEnd, handleDragOngoing } from '../../services/drag.service';
 import Indicator from './3d/indicator';
 
+/**
+ * Use of the native threejs drag controls
+ */
 extend({ DragControls });
 
-const ex = new THREE.Mesh(
+/**
+ * A native three js box to intercept the drag events.
+ * This is an invisible hitbox for handling the car drag
+ */
+const box = new THREE.Mesh(
   new THREE.BoxGeometry(1.1, 1.3, 1.9),
   new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0 }),
 );
 
-function Scene() {
+/**
+ * The main scene
+ */
+function Scene(): JSX.Element {
   const {
     camera,
     gl: { domElement },
@@ -24,14 +34,18 @@ function Scene() {
   const car = useRef();
   const dragControls = useRef();
 
-  // place camera
+  /**
+   * Initial camera placement on scene load
+   */
   useEffect(() => {
     camera.position.set(0, 3.5, -4);
     camera.rotateY(-Math.PI);
     camera.rotateX(-Math.PI * 0.2);
   }, []);
 
-  // level car on y axis on drag
+  /**
+   * Car drag handler
+   */
   useEffect(() => {
     dragControls.current.addEventListener('drag', function (event) {
       event.object.position.y = 0;
@@ -41,7 +55,7 @@ function Scene() {
       handleDragOngoing(car.current.position.x, car.current.position.z);
     });
 
-    // detect drag location and snap car back
+    // detect drag location and snap car back into place
     dragControls.current.addEventListener('dragend', function (event) {
       const tolerance = 0.05;
 
@@ -50,7 +64,8 @@ function Scene() {
       event.object.position.y = 0;
       event.object.position.z = 0;
       event.object.position.x = 0;
-      // snap car back to middle
+
+      // snap car back into place
       const i = setInterval(() => {
         const xDistance = 0 - car.current.position.x;
         const zDistance = 0 - car.current.position.z;
@@ -82,8 +97,8 @@ function Scene() {
         <Indicator />
       </Suspense>
       <Street />
-      <primitive object={ex} />
-      <dragControls ref={dragControls} args={[[ex], camera, domElement]} />
+      <primitive object={box} />
+      <dragControls ref={dragControls} args={[[box], camera, domElement]} />
     </React.Fragment>
   );
 }

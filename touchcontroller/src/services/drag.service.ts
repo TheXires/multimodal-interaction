@@ -6,16 +6,16 @@ import { zDirection } from '../types/zDirection';
 import { changeLane, changeDirection, changeSpeed } from './car.service';
 
 /**
- * Defines the offset the car has to be moved to be considered in certain state and trigger the underlying command (x Axis)
+ * defines the offset the car has to be moved to be considered in certain state and trigger the underlying command (x Axis)
  */
 const horizontalThreshhold = 0.4;
 /**
- * Defines the offset the car has to be moved to be considered in certain state and trigger the underlying command (z Axis)
+ * defines the offset the car has to be moved to be considered in certain state and trigger the underlying command (z Axis)
  */
 const verticalThreshhold = 1.6;
 
 /**
- * This translates the car coordinates to a requested event
+ * this translates the car coordinates to a requested event
  */
 export const translateActionFormCoordinates = (x: number, z: number): Command => {
   if (x > horizontalThreshhold) {
@@ -73,20 +73,20 @@ export const translateActionFormCoordinates = (x: number, z: number): Command =>
 };
 
 /**
- * Last coordinates the drag event sent
+ * last coordinates the drag event sent
  */
 let lastDraggedAction: Command;
 /**
- * The interval instance handling the updates
+ * the interval instance handling the updates
  */
-let updateInterval: any;
+let updateInterval: NodeJS.Timeout;
 
 /**
- * Handle the input event and its data to send requested action to server. Processes the drag END event
+ * handle the input event and its data to send requested action to server. Processes the drag END event
  */
 export const handleDragEnd = (x: number, z: number): void => {
   clearInterval(updateInterval);
-  updateInterval = undefined;
+  updateInterval = undefined as unknown as NodeJS.Timeout;
   updateIndicator(selectIndicator({ horizontal: xDirection.MIDDLE, vertical: zDirection.MIDDLE }));
   const action = translateActionFormCoordinates(x, z);
   if (action.vertical == zDirection.MIDDLE) {
@@ -105,7 +105,7 @@ export const handleDragEnd = (x: number, z: number): void => {
 };
 
 /**
- * Handle the input event and its data to send requested action to server. Processes the ONGOING drag event
+ * handle the input event and its data to send requested action to server. Processes the ONGOING drag event
  */
 export const handleDragOngoing = (x: number, z: number): void => {
   lastDraggedAction = translateActionFormCoordinates(x, z);
@@ -124,7 +124,7 @@ export const handleDragOngoing = (x: number, z: number): void => {
 };
 
 /**
- * Determines the currently needed indicator icon based on a command
+ * determines the currently needed indicator icon based on a command
  * @param action The command to analyze
  * @returns An indicator state
  */
