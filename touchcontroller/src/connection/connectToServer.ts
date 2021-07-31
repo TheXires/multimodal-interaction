@@ -1,3 +1,4 @@
+import { stat } from 'fs';
 import net from 'net';
 import { updateMicIndicator } from '../components/Controllersection/MicIndicator';
 import { updateVelocityIndicator } from '../components/Controllersection/VelocityIndicator';
@@ -11,7 +12,7 @@ let socketActive = false;
 /**
  * connect to server
  */
-const connectToServer = () => {
+const connectToServer = (): void => {
   socket = socket.connect(port);
 };
 
@@ -32,10 +33,29 @@ socket.on('connect', () => {
   console.log('connected');
 });
 
-socket.on('data', (data) => {
-  // updateMicIndicator(MicIndicatorState.PROCESSING)
-  // updateVelocityIndicator(100);
-  console.log(JSON.parse(data.toString()));
+socket.on('data', (data: string) => {
+  // console.log('Pure Data: ', JSON.parse(data.toString()));
+  const state = JSON.parse(data.toString());
+  switch (state.action) {
+    case 'listening':
+      console.log('listening');
+      updateMicIndicator(MicIndicatorState.ON);
+      break;
+    case 'processing':
+      console.log('processing');
+      updateMicIndicator(MicIndicatorState.PROCESSING);
+      break;
+    case 'finished':
+      console.log('finished');
+      updateMicIndicator(MicIndicatorState.OFF);
+      break;
+    case 'velocityChanged':
+      console.log('velocityChanged: ', state.velocity);
+      updateVelocityIndicator(state.velocity);
+      break;
+    default:
+      break;
+  }
 });
 
 // handles server error messages

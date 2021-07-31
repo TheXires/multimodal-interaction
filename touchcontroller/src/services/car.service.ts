@@ -1,24 +1,25 @@
+import { Direction, Lane } from '../types/enums';
 import { sendMessage } from '../connection/connectToServer';
 
 /**
- * change the vehicles speed
+ * change the vehicles velocity
  *
- * @param amount amount the vehicles speed should be increased
+ * @param amount amount the vehicles velocity should be increased
  */
-export const changeSpeed = (amount: number): void => {
-  console.log('changeSpeed by: ', amount);
-  // sendMessageToServer({ action: 'changeSpeed', amount: amount });
-  sendMessage({ action: 'changeSpeed', amount: amount });
+export const changeVelocity = (amount: number): void => {
+  console.log('changeVelocity by: ', amount);
+  // sendMessageToServer({ action: 'changeVelocity', amount: amount });
+  sendMessage({ action: 'changeVelocity', amount: amount });
 };
 
 /**
- * set the vehicels speed
+ * set the vehicels velocity
  *
- * @param speed the speed the vehicle should drive
+ * @param velocity the velocity the vehicle should drive
  */
-export const setSpeed = (speed: number): void => {
-  console.log('setSpeed to: ', speed);
-  sendMessage({ action: 'setSpeed', speed: speed });
+export const setVelocity = (velocity: number): void => {
+  console.log('setVelocity to: ', velocity);
+  sendMessage({ action: 'setVelocity', velocity: velocity });
 };
 
 /**
@@ -42,17 +43,19 @@ export const emergencyStop = (): void => {
  *
  * @param direction direction the vehicle should turn to
  */
-export const changeDirection = (direction: 'links' | 'rechts'): void => {
+export const changeDirection = (direction: Direction): void => {
   console.log('changeDirection service: ', direction);
+  if (!direction) return;
   sendMessage({ action: 'changeDirection', direction: direction });
 };
 
 /**
  * change the lane of the vehicle
  *
- * @param direction direction the vehicle should change the lane to
+ * @param lane direction the vehicle should change the lane to
  */
-export const changeLane = (direction: 'links' | 'rechts'): void => {
-  console.log('changeLane: ', direction);
-  sendMessage({ action: 'changeLane', direction: direction });
+export const changeLane = (lane: Lane): void => {
+  console.log('changeLane: ', lane);
+  if (!lane) return;
+  sendMessage({ action: 'changeLane', lane: lane });
 };

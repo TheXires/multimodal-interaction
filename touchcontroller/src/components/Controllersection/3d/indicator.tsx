@@ -20,13 +20,13 @@ export let updateIndicator: (state: IndicatorState) => void;
  */
 const Indicator = (): JSX.Element => {
   const [show, setShow] = useState(false);
-  const laneChangeLeftTexture = useLoader(TextureLoader, laneChangeLeft.default);
+  const laneChangeLeftTexture = useLoader(TextureLoader, laneChangeLeft.default) as Texture;
   const laneChangeRightTexture = useLoader(TextureLoader, laneChangeRight.default);
   const turnRightTexture = useLoader(TextureLoader, turnRight.default);
   const turnLeftTexture = useLoader(TextureLoader, turnLeft.default);
   const forwardsTexture = useLoader(TextureLoader, forwards.default);
   const backwardsTexture = useLoader(TextureLoader, backwards.default);
-  const ref = useRef();
+  const ref = useRef<any>();
 
   /**
    * Update the indicator on rerender.
@@ -46,9 +46,9 @@ const Indicator = (): JSX.Element => {
         ref.current.map = turnLeftTexture;
       } else if (state == IndicatorState.TURN_RIGHT) {
         ref.current.map = turnRightTexture;
-      } else if (state == IndicatorState.INCREASE_SPEED) {
+      } else if (state == IndicatorState.INCREASE_VELOCITY) {
         ref.current.map = forwardsTexture;
-      } else if (state == IndicatorState.DECREASE_SPEED) {
+      } else if (state == IndicatorState.DECREASE_VELOCITY) {
         ref.current.map = backwardsTexture;
       } else if (state == IndicatorState.NONE) {
         setShow(false);

@@ -1,9 +1,10 @@
 import { updateIndicator } from '../components/Controllersection/3d/indicator';
 import { Command } from '../types/command';
+import { Direction, Lane } from '../types/enums';
 import { IndicatorState } from '../types/indicatorState';
 import { xDirection } from '../types/xDirection';
 import { zDirection } from '../types/zDirection';
-import { changeLane, changeDirection, changeSpeed } from './car.service';
+import { changeLane, changeDirection, changeVelocity } from './car.service';
 
 /**
  * defines the offset the car has to be moved to be considered in certain state and trigger the underlying command (x Axis)
@@ -90,15 +91,15 @@ export const handleDragEnd = (x: number, z: number): void => {
   const action = translateActionFormCoordinates(x, z);
   if (action.vertical == zDirection.MIDDLE) {
     if (action.horizontal == xDirection.LEFT) {
-      changeLane('links');
+      changeLane(Lane.LEFT);
     } else if (action.horizontal == xDirection.RIGHT) {
-      changeLane('rechts');
+      changeLane(Lane.RIGHT);
     }
   } else if (action.vertical == zDirection.UP) {
     if (action.horizontal == xDirection.LEFT) {
-      changeDirection('links');
+      changeDirection(Direction.LEFT);
     } else if (action.horizontal == xDirection.RIGHT) {
-      changeDirection('rechts');
+      changeDirection(Direction.RIGHT);
     }
   }
 };
@@ -113,9 +114,9 @@ export const handleDragOngoing = (x: number, z: number): void => {
     updateInterval = setInterval(() => {
       if (lastDraggedAction.horizontal == xDirection.MIDDLE) {
         if (lastDraggedAction.vertical == zDirection.UP) {
-          changeSpeed(5);
+          changeVelocity(5);
         } else if (lastDraggedAction.vertical == zDirection.DOWN) {
-          changeSpeed(-5);
+          changeVelocity(-5);
         }
       }
     }, 750);
@@ -140,10 +141,10 @@ const selectIndicator = (action: Command): IndicatorState => {
     } else if (action.horizontal == xDirection.RIGHT) {
       return IndicatorState.TURN_RIGHT;
     } else if (action.horizontal == xDirection.MIDDLE) {
-      return IndicatorState.INCREASE_SPEED;
+      return IndicatorState.INCREASE_VELOCITY;
     }
   } else if (action.vertical == zDirection.DOWN && action.horizontal == xDirection.MIDDLE) {
-    return IndicatorState.DECREASE_SPEED;
+    return IndicatorState.DECREASE_VELOCITY;
   }
   return IndicatorState.NONE;
 };

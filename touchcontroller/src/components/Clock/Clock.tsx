@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './clock.css';
+import './Clock.css';
 
 /**
  * persistent clock at the top right corner

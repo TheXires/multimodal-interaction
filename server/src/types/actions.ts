@@ -4,7 +4,7 @@
 export interface Action {
   action: string;
   amount?: number;
-  speed?: number;
+  velocity?: number;
   direction?: Direction;
   lane?: Lane;
 }

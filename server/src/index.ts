@@ -10,10 +10,11 @@ console.log(`listening at http://localhost:${port}`);
 const clients = [];
 
 server.on('connection', (socket) => {
+  socket.setEncoding('utf8');
   clients.push(socket);
   console.log('connection established \n active connections: ', clients.length);
   socket.on('data', (req) => {
-    console.log(JSON.parse(req.toString()));
+    console.log('Incoming request: ', JSON.parse(req.toString()));
     requestController.processRequest(JSON.parse(req.toString()));
   });
 
@@ -33,6 +34,7 @@ server.on('connection', (socket) => {
  */
 export const sendMessage = (message: Action): void => {
   clients.forEach((socket) => {
+    console.log('message to send: ', JSON.stringify(message))
     socket.write(JSON.stringify(message), (error) => {
       if (error) {
         console.error(error.message);

@@ -1,11 +1,11 @@
 import { Acceleration, Direction, Lane } from './enums';
 
 /**
- * describes the changeSpeed slot
+ * describes the changeVelocity slot
  */
-export interface ChangeSpeedSlot {
+export interface ChangeVelocitySlot {
   acceleration?: Acceleration;
-  speed?: string;
+  velocity?: string;
 }
 
 /**

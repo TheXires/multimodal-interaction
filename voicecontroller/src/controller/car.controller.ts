@@ -1,20 +1,21 @@
 import { convertTextToNumber } from '../helper/converter';
 import carService from '../services/car.service';
-import { ChangeDirectionSlot, ChangeLaneSlot, ChangeSpeedSlot } from '../types/slots';
+import { ChangeDirectionSlot, ChangeLaneSlot, ChangeVelocitySlot } from '../types/slots';
 
 /**
- * change and set the vehicles speed
+ * change and set the vehicles velocity
  */
-const changeSpeed = (slots: ChangeSpeedSlot): void => {
-  const speed = convertTextToNumber(slots.speed) ?? 5;
+const changeVelocity = (slots: ChangeVelocitySlot): void => {
+  console.log('called: ', slots);
+  const velocity = convertTextToNumber(slots.velocity) ?? 5;
   if (slots.acceleration === 'schneller') {
-    carService.changeSpeed(speed);
+    carService.changeVelocity(velocity);
   } else if (slots.acceleration === 'langsamer') {
-    carService.changeSpeed(-speed);
+    carService.changeVelocity(-velocity);
   } else if (slots.acceleration == undefined) {
-    // not allowed to set speed under 6 km/h to prevent slower speeds than "schrittgeschwindigkeit"
-    // and wrong inputs because of undefind speed slot
-    carService.setSpeed(Math.max(speed, 6));
+    // not allowed to set velocity under 6 km/h to prevent slower velocity than "Schrittgeschwindigkeit"
+    // and wrong inputs because of undefind velocity slot
+    carService.setVelocity(Math.max(velocity, 6));
   }
 };
 
@@ -50,4 +51,4 @@ const changeLane = (slots: ChangeLaneSlot): void => {
   carService.changeLane(direction);
 };
 
-export default { changeSpeed, stop, emergencyStop, changeDirection, changeLane };
+export default { changeVelocity, stop, emergencyStop, changeDirection, changeLane };

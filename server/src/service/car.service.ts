@@ -1,22 +1,25 @@
+import { sendMessage } from '..';
 import { finished } from './ui.service';
 
 /**
- * change the speed of the vehicle
+ * change the velocity of the vehicle
  * 
- * @param speed 
+ * @param velocity 
  */
-const changeSpeed = (speed: number): void => {
-  console.log('changeSpeed: ' + speed);
+const changeVelocity = (velocity: number): void => {
+  console.log('changeVelocity: ' + velocity);
+  sendMessage({action: 'velocityChanged', velocity: Math.random()*10})
   finished();
 };
 
 /**
- * set the speed of the vehicle
+ * set the velocity of the vehicle
  * 
- * @param speed 
+ * @param velocity 
  */
-const setSpeed = (speed: number): void => {
-  console.log('setSpeed: ' + speed);
+const setVelocity = (velocity: number): void => {
+  console.log('setVelocity: ' + velocity);
+  sendMessage({action: 'velocityChanged', velocity: velocity})
   finished();
 };
 
@@ -57,8 +60,8 @@ const changeLane = (direction: string): void => {
 };
 
 export default {
-  changeSpeed,
-  setSpeed,
+  changeVelocity,
+  setVelocity,
   stop,
   emergencyStop,
   changeDirection,

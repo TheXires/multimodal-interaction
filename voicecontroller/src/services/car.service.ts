@@ -2,23 +2,23 @@ import { sendMessageToServer } from '../connection/connectToServer';
 import { Direction, Lane } from '../types/enums';
 
 /**
- * change the vehicles speed
+ * change the vehicles velocity
  *
- * @param amount amount the vehicles speed should be increased
+ * @param amount amount the vehicles velocity should be increased
  */
-const changeSpeed = (amount: number): void => {
-  console.log('changeSpeed by: ', amount);
-  sendMessageToServer({ action: 'changeSpeed', amount: amount });
+const changeVelocity = (amount: number): void => {
+  console.log('changeVelocity by: ', amount);
+  sendMessageToServer({ action: 'changeVelocity', amount: amount });
 };
 
 /**
- * set the vehicels speed
+ * set the vehicels velocity
  *
- * @param speed the speed the vehicle should drive
+ * @param velocity the velocity the vehicle should drive
  */
-const setSpeed = (speed: number): void => {
-  console.log('setSpeed to: ', speed);
-  sendMessageToServer({ action: 'setSpeed', speed: speed });
+const setVelocity = (velocity: number): void => {
+  console.log('setVelocity to: ', velocity);
+  sendMessageToServer({ action: 'setVelocity', velocity: velocity });
 };
 
 /**
@@ -57,4 +57,4 @@ const changeLane = (direction: Lane): void => {
   sendMessageToServer({ action: 'changeLane', lane: direction });
 };
 
-export default { changeSpeed, setSpeed, stop, emergencyStop, changeDirection, changeLane };
+export default { changeVelocity, setVelocity, stop, emergencyStop, changeDirection, changeLane };

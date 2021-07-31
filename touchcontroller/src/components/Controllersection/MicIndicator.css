@@ -8,7 +8,7 @@
   transition: .3s;
 }
 .indicator.micStateOff {
-  background-color: #ec8993;
+  background-color: #afafaf;
 }
 .indicator.micStateOn {
   background-color: #a1e49d;

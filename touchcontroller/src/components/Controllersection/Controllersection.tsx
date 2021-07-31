@@ -33,8 +33,8 @@ function Scene(): JSX.Element {
     gl: { domElement },
   } = useThree();
 
-  const car = useRef();
-  const dragControls = useRef();
+  const car = useRef<any>();
+  const dragControls = useRef<any>();
 
   /**
    * Initial camera placement on scene load

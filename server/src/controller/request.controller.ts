@@ -8,7 +8,6 @@ import { Action } from '../types/actions';
  * @param req action request from controllers
  */
 const processRequest = (req: Action): void => {
-  console.log('req: ', req);
   switch (req.action) {
     // voicecontroller only
     case 'startListening':
@@ -19,11 +18,11 @@ const processRequest = (req: Action): void => {
       break;
 
     // both
-    case 'changeSpeed':
-      carService.changeSpeed(req.amount);
+    case 'changeVelocity':
+      carService.changeVelocity(req.amount);
       break;
-    case 'setSpeed':
-      carService.setSpeed(req.speed);
+    case 'setVelocity':
+      carService.setVelocity(req.velocity);
       break;
     case 'stop':
       carService.stop();

@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
-import Clock from './components/Clock/clock';
+import Clock from './components/Clock/Clock';
 import Controllersection from './components/Controllersection/Controllersection';
 import Sidebar from './components/Sidebar/Sidebar';
+import StopButtons from './components/StopButtons/StopButtons';
 
 const App = (): JSX.Element => {
   return (
@@ -10,6 +11,7 @@ const App = (): JSX.Element => {
       <Sidebar />
       <Controllersection />
       <Clock />
+      <StopButtons />
     </div>
   );
 };

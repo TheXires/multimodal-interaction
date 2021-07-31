@@ -1,0 +1,37 @@
+.stopButton {
+  position: absolute;
+  display: flex;
+  right: 2rem;
+  bottom: 2rem;
+  font-size: 5rem;
+}
+
+.stopButton__box {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  margin-left: 2rem;
+}
+
+.stopButton__boxButton {
+  display: flex;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 20%;
+}
+
+.green {
+  background-color: rgb(75, 163, 75);
+}
+
+.red {
+  background-color: red;
+}
+
+.stopButton__icon {
+  color: whitesmoke;
+  z-index: 99;
+}
