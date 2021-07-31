@@ -3,6 +3,7 @@
 
 import carController from './controller/car.controller';
 import stateController from './controller/state.controller';
+import { Inference } from './types/inference';
 const Picovoice = require('@picovoice/picovoice-node');
 const recorder = require('node-record-lpcm16');
 
@@ -26,23 +27,28 @@ const sensitivity = 0.5;
  * @param size
  * @returns
  */
-function chunkArray(array: any, size: any) {
-  return Array.from({ length: Math.ceil(array.length / size) }, (v, index) =>
+const chunkArray = (array: number[], size: number) => {
+  return Array.from({ length: Math.ceil(array.length / size) }, (_, index: number) =>
     array.slice(index * size, index * size + size),
   );
-}
+};
 
 /**
  * logs to the console that wake word is detected and sends signal to the Server
  *
  * @param keyword number of the called wake word
  */
-const keywordCallback = function (keyword: number) {
+const keywordCallback = () => {
   console.log(`Wake word detected.`);
   stateController.startListening();
 };
 
-const inferenceCallback = function (inference: any) {
+/**
+ * identify intent from inference and calls according function
+ *
+ * @param inference inference object
+ */
+const inferenceCallback = (inference: Inference): void => {
   stateController.stopListening();
   console.log(JSON.stringify(inference, null, 4));
   if (!inference.isUnderstood) return;
@@ -84,13 +90,13 @@ const recording = recorder.record({
   recorder: 'arecord',
 });
 
-var frameAccumulator: any = [];
+var frameAccumulator: number[] = [];
 
-recording.stream().on('error', (data: any) => {
-  console.log('recorder stream error');
+recording.stream().on('error', () => {
+  console.error('recorder stream error');
 });
 
-recording.stream().on('data', (data: any) => {
+recording.stream().on('data', (data: Buffer) => {
   // Two bytes per Int16 from the data buffer
   let newFrames16 = new Array(data.length / 2);
   for (let i = 0; i < data.length; i += 2) {
@@ -104,7 +110,7 @@ recording.stream().on('data', (data: any) => {
 
   if (frames[frames.length - 1].length !== frameLength) {
     // store remainder from divisions of frameLength
-    frameAccumulator = frames.pop();
+    frameAccumulator = frames.pop() as number[];
   } else {
     frameAccumulator = [];
   }

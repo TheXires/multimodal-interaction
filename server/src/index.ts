@@ -1,5 +1,6 @@
 import * as net from 'net';
 import requestController from './controller/request.controller';
+import { Action } from './types/actions';
 
 // setup json-socket server
 const port = 4501;
@@ -25,7 +26,7 @@ server.on('connection', (socket) => {
   });
 });
 
-export const sendMessage = (message: any): void => {
+export const sendMessage = (message: Action): void => {
   clients.forEach((socket) => {
     socket.write(JSON.stringify(message), (error) => {
       if (error) {

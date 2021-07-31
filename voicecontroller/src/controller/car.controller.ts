@@ -1,11 +1,14 @@
+import { AsyncLocalStorage } from 'async_hooks';
 import { convertTextToNumber } from '../helper/converter';
 import carService from '../services/car.service';
+import { ChangeDirectionSlot, ChangeLaneSlot, ChangeSpeedSlot } from '../types/slots';
 
 /**
  * change and set the vehicles speed
  */
-const changeSpeed = (slots: any): void => {
-  const speed = convertTextToNumber(slots.speed) || 5;
+const changeSpeed = (slots: ChangeSpeedSlot): void => {
+  console.log('slots: ', slots);
+  const speed = convertTextToNumber(slots.speed) ?? 5;
   if (slots.acceleration === 'schneller') {
     carService.changeSpeed(speed);
   } else if (slots.acceleration === 'langsamer') {
@@ -34,7 +37,8 @@ const emergencyStop = (): void => {
 /**
  * change the direction of the vehicle at the next crossroad
  */
-const changeDirection = (slots: any): void => {
+const changeDirection = (slots: ChangeDirectionSlot): void => {
+  console.log('slots: ', slots);
   const direction = slots.direction || undefined;
   if (direction == undefined) return;
   carService.changeDirection(direction);
@@ -43,7 +47,8 @@ const changeDirection = (slots: any): void => {
 /**
  * change the lane of the vehicle
  */
-const changeLane = (slots: any): void => {
+const changeLane = (slots: ChangeLaneSlot): void => {
+  console.log('slots: ', slots);
   const direction = slots.direction || undefined;
   if (direction == undefined) return;
   carService.changeLane(direction);

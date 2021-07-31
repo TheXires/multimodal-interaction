@@ -4,7 +4,7 @@
  * @param text number between 1 and 130 as german text
  * @returns the string value as number or undefined if string is invalid
  */
-export const convertTextToNumber = (text: string): number | undefined => {
+export const convertTextToNumber = (text: string | undefined): number | undefined => {
   let result: number | undefined;
   switch (text) {
     case 'ein':
@@ -498,7 +498,7 @@ export const convertTextToNumber = (text: string): number | undefined => {
 /**
  * helper methode to generate german numbers as string and print to console
  */
-export const converterGenerator20to99 = () => {
+export const converterGenerator20to99 = (): void => {
   const tens = [
     'zwanzig',
     'dreißig',

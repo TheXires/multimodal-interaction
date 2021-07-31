@@ -6,7 +6,7 @@ import './clock.css';
  *
  * @returns rendered componend
  */
-function Clock() {
+const Clock = (): JSX.Element => {
   const [clock, setClock] = useState<Date>(new Date());
 
   useEffect(() => {
@@ -24,6 +24,6 @@ function Clock() {
       `}
     </div>
   );
-}
+};
 
 export default Clock;

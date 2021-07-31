@@ -1,12 +1,10 @@
-import React, { Suspense, useEffect } from 'react';
+import React from 'react';
 import './App.css';
 import Clock from './components/Clock/clock';
-import Sidebar from './components/Sidebar/Sidebar';
 import Controllersection from './components/Controllersection/Controllersection';
-import { sendMessage } from './connection/connectToServer';
-// import { jsonSocketPort, serverSocket } from './connection/server';
+import Sidebar from './components/Sidebar/Sidebar';
 
-function App() {
+const App = (): JSX.Element => {
   return (
     <div className="App">
       <Sidebar />
@@ -14,6 +12,6 @@ function App() {
       <Clock />
     </div>
   );
-}
+};
 
 export default App;

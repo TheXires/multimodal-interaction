@@ -1,5 +1,5 @@
 import { sendMessageToServer } from '../connection/connectToServer';
-import { Direction, Lane } from '../types/actions';
+import { Direction, Lane } from '../types/enums';
 
 /**
  * change the vehicles speed

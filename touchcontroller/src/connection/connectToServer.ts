@@ -1,5 +1,5 @@
 import net from 'net';
-import {Action} from '../types/actions';
+import { Action } from '../types/actions';
 
 const port = 4501;
 let socket = net.createConnection(port);
@@ -72,4 +72,3 @@ export const sendMessage = (message: Action) => {
     });
   }
 };
-// {"action":"changeSpeed","amount":10}

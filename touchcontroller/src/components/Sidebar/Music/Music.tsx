@@ -3,7 +3,7 @@ import './Music.css';
 import music_img from '../../../assets/music.jpg';
 import { FaPause, FaBackward, FaForward } from 'react-icons/fa';
 
-const Music = () => {
+const Music = (): JSX.Element => {
   return (
     <div className="music" style={{ borderRadius: 25 }}>
       <img src={music_img} />

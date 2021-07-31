@@ -1,4 +1,3 @@
-import { sendMessage } from '../index';
 import { finished } from './ui.service';
 
 const changeSpeed = (speed: number): void => {

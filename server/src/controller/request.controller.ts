@@ -1,7 +1,6 @@
 import carService from '../service/car.service';
 import uiService from '../service/ui.service';
 import infotainmendService from '../service/infotainment.service';
-import voiceService from '../service/voice.service';
 
 const processRequest = (req): void => {
   switch (req.action) {
@@ -11,11 +10,6 @@ const processRequest = (req): void => {
       break;
     case 'stopListening':
       uiService.processing();
-      break;
-
-    // touch controller only
-    case 'activateMic':
-      voiceService.activateMic();
       break;
 
     // both

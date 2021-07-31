@@ -2,7 +2,7 @@ import React from 'react';
 import './Map.css';
 import map_img from '../../../assets/map.png';
 
-const Map = () => {
+const Map = (): JSX.Element => {
   return (
     <div
       className="map"
