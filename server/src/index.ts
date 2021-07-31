@@ -18,7 +18,7 @@ server.on('connection', (socket) => {
   });
 
   socket.on('end', () => {
-    let index = clients.indexOf(socket);
+    const index = clients.indexOf(socket);
     if (index !== -1) {
       clients.splice(index, 1);
       console.log('client disconnected. \n active connections: ', clients.length);

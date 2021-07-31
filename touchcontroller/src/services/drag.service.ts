@@ -13,7 +13,15 @@ const horizontalThreshhold = 0.4;
  * defines the offset the car has to be moved to be considered in certain state and trigger the underlying command (z Axis)
  */
 const verticalThreshhold = 1.6;
-
+/**
+ * last coordinates the drag event sent
+ */
+ let lastDraggedAction: Command;
+ /**
+  * the interval instance handling the updates
+  */
+let updateInterval: NodeJS.Timeout;
+ 
 /**
  * this translates the car coordinates to a requested event
  */
@@ -71,15 +79,6 @@ export const translateActionFormCoordinates = (x: number, z: number): Command =>
     }
   }
 };
-
-/**
- * last coordinates the drag event sent
- */
-let lastDraggedAction: Command;
-/**
- * the interval instance handling the updates
- */
-let updateInterval: NodeJS.Timeout;
 
 /**
  * handle the input event and its data to send requested action to server. Processes the drag END event
