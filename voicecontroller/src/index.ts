@@ -43,17 +43,7 @@ const keywordCallback = function (keyword: number) {
   stateController.startListening();
 };
 
-/**
- * forces the voiceController to listen, even without a wakeword
- */
-export const forceListening = () => {
-  console.log(`Activated through touchController`);
-  stateController.startListening();
-  // TODO hier picovoice manuell aktivieren
-};
-
 const inferenceCallback = function (inference: any) {
-  console.log('Inference:');
   stateController.stopListening();
   console.log(JSON.stringify(inference, null, 4));
   if (!inference.isUnderstood) return;

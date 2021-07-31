@@ -1,11 +1,11 @@
 import stateService from '../services/state.service';
 
-const startListening = () => {
+const startListening = (): void => {
   stateService.startListening();
 };
 
-const stopListening = () => {
+const stopListening = (): void => {
   stateService.stopListening();
 };
 
-export default { startListening , stopListening};
+export default { startListening, stopListening };

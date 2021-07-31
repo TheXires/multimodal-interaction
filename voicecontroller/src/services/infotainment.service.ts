@@ -5,7 +5,7 @@ import { sendMessageToServer } from '../connection/connectToServer';
  *
  * @param title
  */
-const changeTitle = (title: string) => {
+const changeTitle = (title: string): void => {
   console.log('called changeTitle: ', title);
 };
 
@@ -14,7 +14,7 @@ const changeTitle = (title: string) => {
  *
  * @param volume
  */
-const changeVolume = (volume: string) => {
+const changeVolume = (volume: string): void => {
   console.log('called changeVolume: ', volume);
 };
 

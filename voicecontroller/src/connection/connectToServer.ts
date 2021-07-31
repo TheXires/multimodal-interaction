@@ -1,11 +1,10 @@
 import net from 'net';
-import requestController from '../controller/request.controller';
+import { Action } from '../types/actions';
 
 // socket setup
 const port = 4501;
 const socket = net.createConnection(port);
 let socketActive = false;
-const server = [];
 
 /**
  * connect to server
@@ -28,16 +27,10 @@ const tryToConnect = setInterval(() => {
   }
 }, 3000);
 
-/**
- * listens to events send from server
- */
+// listens to events send from server
 socket.on('connect', () => {
   socketActive = true;
   console.log('connected');
-});
-
-socket.on('data', (req) => {
-  requestController.processRequest(JSON.parse(req.toString()));
 });
 
 // handles server error messages
@@ -52,7 +45,7 @@ socket.on('error', (error: any) => {
 
 // when losing connection to server try to reconnect
 socket.on('end', () => {
-  console.log('Try to reconnect...');
+  console.log('trying to reconnect...');
   socketActive = false;
   const tryToReconnect = setInterval(() => {
     if (!socketActive) {
@@ -68,11 +61,13 @@ socket.on('end', () => {
  *
  * @param message JSON Object
  */
-export const sendMessageToServer = (message: any) => {
+export const sendMessageToServer = (message: Action): void => {
   if (socketActive) {
-    socket.write(JSON.stringify(message), (error) => {
+    const ab = JSON.stringify(message);
+    console.log('ab: ', ab);
+    socket.write(ab, (error) => {
       if (error) {
-        console.log(error.message);
+        console.log('error in write: ', error.message);
       }
     });
   }

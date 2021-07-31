@@ -1,6 +1,11 @@
 import { convertTextToNumber } from '../helper/converter';
 import carService from '../services/car.service';
+// TODO kommentare hinzufügen
 
+/**
+ * 
+ * @param slots 
+ */
 const changeSpeed = (slots: any): void => {
   const speed = convertTextToNumber(slots.speed) || 5;
   if (slots.acceleration === 'schneller') {
@@ -14,6 +19,9 @@ const changeSpeed = (slots: any): void => {
   }
 };
 
+/**
+ * 
+ */
 const stop = (): void => {
   carService.stop();
 };

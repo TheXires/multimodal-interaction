@@ -1,4 +1,5 @@
 import { sendMessageToServer } from '../connection/connectToServer';
+import { Direction, Lane } from '../types/actions';
 
 /**
  * change the vehicles speed
@@ -41,7 +42,7 @@ const emergencyStop = (): void => {
  *
  * @param direction direction the vehicle should turn to
  */
-const changeDirection = (direction: any): void => {
+const changeDirection = (direction: Direction): void => {
   console.log('changeDirection service: ', direction);
   sendMessageToServer({ action: 'changeDirection', direction: direction });
 };
@@ -49,11 +50,11 @@ const changeDirection = (direction: any): void => {
 /**
  * change the lane of the vehicle
  *
- * @param direction direction the vehicle should change the lane to
+ * @param lane direction the vehicle should change the lane to
  */
-const changeLane = (direction: any): void => {
+const changeLane = (direction: Lane): void => {
   console.log('changeLane: ', direction);
-  sendMessageToServer({ action: 'changeLane', direction: direction });
+  sendMessageToServer({ action: 'changeLane', lane: direction });
 };
 
 export default { changeSpeed, setSpeed, stop, emergencyStop, changeDirection, changeLane };

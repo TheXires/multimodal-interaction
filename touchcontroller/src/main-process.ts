@@ -1,6 +1,6 @@
 import { app, BrowserWindow } from 'electron';
 
-declare const ENVIRONMENT: String;
+declare const ENVIRONMENT: string;
 
 const IS_DEV = ENVIRONMENT == 'development';
 const DEV_SERVER_URL = 'http://localhost:9000';
