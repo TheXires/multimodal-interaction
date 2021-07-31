@@ -1,7 +1,8 @@
 import net from 'net';
-import {updateMicIndicator} from '../components/Controllersection/MicIndicator';
+import { updateMicIndicator } from '../components/Controllersection/MicIndicator';
+import { updateVelocityIndicator } from '../components/Controllersection/VelocityIndicator';
 import { Action } from '../types/actions';
-import {MicIndicatorState} from '../types/micIndicatorState';
+import { MicIndicatorState } from '../types/micIndicatorState';
 
 const port = 4501;
 let socket = net.createConnection(port);
@@ -33,6 +34,7 @@ socket.on('connect', () => {
 
 socket.on('data', (data) => {
   // updateMicIndicator(MicIndicatorState.PROCESSING)
+  // updateVelocityIndicator(100);
   console.log(JSON.parse(data.toString()));
 });
 
@@ -67,7 +69,7 @@ socket.on('end', () => {
 export const sendMessage = (message: Action): void => {
   if (socketActive) {
     const json = JSON.stringify(message);
-    console.log('json: ', json)
+    console.log('json: ', json);
     socket.write(json, (error) => {
       if (error) {
         console.log(error.message);
