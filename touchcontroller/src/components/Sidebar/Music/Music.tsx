@@ -3,6 +3,9 @@ import './Music.css';
 import music_img from '../../../assets/music.jpg';
 import { FaPause, FaBackward, FaForward } from 'react-icons/fa';
 
+/**
+ * music card for sidebar
+ */
 const Music = (): JSX.Element => {
   return (
     <div className="music" style={{ borderRadius: 25 }}>

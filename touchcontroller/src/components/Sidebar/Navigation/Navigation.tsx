@@ -1,6 +1,9 @@
 import React from 'react';
 import './Navigation.css';
 
+/**
+ * navigation card for sidebar
+ */
 const Navigation = (): JSX.Element => {
   return (
     <div style={{ borderRadius: 25, backgroundColor: '#8FB0FF', padding: '1rem' }}>

@@ -17,11 +17,9 @@ const Clock = (): JSX.Element => {
 
   return (
     <div className="clock">
-      {`
-        ${clock.getHours() < 10 ? '0' + clock.getHours() : clock.getHours()}:
-        ${clock.getMinutes() < 10 ? '0' + clock.getMinutes() : clock.getMinutes()}:
-        ${clock.getSeconds() < 10 ? '0' + clock.getSeconds() : clock.getSeconds()}
-      `}
+      {clock.getHours() < 10 ? '0' + clock.getHours().toString() : clock.getHours()}:
+      {clock.getMinutes() < 10 ? '0' + clock.getMinutes().toString() : clock.getMinutes()}:
+      {clock.getSeconds() < 10 ? '0' + clock.getSeconds().toString() : clock.getSeconds()}
     </div>
   );
 };
