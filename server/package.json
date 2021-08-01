@@ -3,6 +3,7 @@
     "start": "ts-node-dev ./src/index.ts"
   },
   "dependencies": {
+    "@types/json-socket": "^0.1.17",
     "json-socket": "^0.3.0"
   },
   "devDependencies": {

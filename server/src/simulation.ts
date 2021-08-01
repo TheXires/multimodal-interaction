@@ -21,14 +21,29 @@ const getCurrentVelocity = (): number => {
  * @param amount The amount to change the current velocity by
  */
 const changeVelocityBy = (amount: number): void => {
-  currentVelocity += amount;
+  currentVelocity += checkBoundaries(amount);
 };
 
 /**
  * @param amount The amount to set the velocity to
  */
 const setVelocityTo = (amount: number): void => {
-  currentVelocity = amount;
+  currentVelocity = checkBoundaries(amount);
 };
+
+/**
+ * Makes sure the boundaries are not exceeded
+ * @param amount the amount to check
+ * @returns the checked amount
+ */
+function checkBoundaries(amount: number) {
+  if (amount < baseData.minVelocity) {
+    amount = 0;
+  }
+  if (amount > baseData.maxVelocity) {
+    amount = 130;
+  }
+  return amount;
+}
 
 export { getCurrentVelocity, changeVelocityBy, setVelocityTo };

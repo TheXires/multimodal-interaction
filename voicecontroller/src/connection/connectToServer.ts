@@ -1,18 +1,18 @@
+import JsonSocket from 'json-socket';
 import net from 'net';
 import { Action } from '../types/actions';
 
 // socket setup
 const port = 4501;
-const socket = net.createConnection(port);
+const host = '127.0.0.1';
+let socket = new JsonSocket(new net.Socket());
 let socketActive = false;
 
 /**
  * connect to server
  */
 const connectToServer = (): void => {
-  socket.destroy();
-  socket.setTimeout(0);
-  socket.connect(port);
+  socket.connect(port, host);
 };
 
 /**
@@ -62,7 +62,7 @@ socket.on('end', () => {
  */
 export const sendMessageToServer = (message: Action): void => {
   if (socketActive) {
-    socket.write(JSON.stringify(message), (error) => {
+    socket.sendMessage(message, (error) => {
       if (error) {
         console.error(error.message);
       }
