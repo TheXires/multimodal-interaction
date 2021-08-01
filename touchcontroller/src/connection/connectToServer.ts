@@ -1,6 +1,9 @@
 import { stat } from 'fs';
 import net from 'net';
-import { updateMicIndicator } from '../components/Controllersection/MicIndicator';
+import {
+  updateConnectionLostIndicator,
+  updateMicIndicator,
+} from '../components/Controllersection/MicIndicator';
 import { updateVelocityIndicator } from '../components/Controllersection/VelocityIndicator';
 import { Action } from '../types/actions';
 import { MicIndicatorState } from '../types/micIndicatorState';
@@ -29,11 +32,13 @@ const tryToConnect = setInterval(() => {
 
 // listens to events send from server
 socket.on('connect', () => {
+  updateConnectionLostIndicator(false);
   socketActive = true;
   console.log('connected');
 });
 
 socket.on('data', (data: string) => {
+  updateConnectionLostIndicator(false);
   // console.log('Pure Data: ', JSON.parse(data.toString()));
   const state = JSON.parse(data.toString());
   switch (state.action) {
@@ -60,6 +65,7 @@ socket.on('data', (data: string) => {
 
 // handles server error messages
 socket.on('error', (error: any) => {
+  updateConnectionLostIndicator(true);
   if (error.code === 'ECONNREFUSED') {
     console.log('trying to connect...');
   } else {
@@ -70,6 +76,7 @@ socket.on('error', (error: any) => {
 
 // when losing connection to server try to reconnect
 socket.on('end', () => {
+  updateConnectionLostIndicator(true);
   console.log('Try to reconnect...');
   socketActive = false;
   const tryToReconnect = setInterval(() => {

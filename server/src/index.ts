@@ -1,5 +1,6 @@
 import * as net from 'net';
 import requestController from './controller/request.controller';
+import {getCurrentVelocity} from './simulation';
 import { Action } from './types/actions';
 
 // setup socket server
@@ -13,6 +14,7 @@ server.on('connection', (socket) => {
   socket.setEncoding('utf8');
   clients.push(socket);
   console.log('connection established \n active connections: ', clients.length);
+  sendMessage({ action: 'velocityChanged', velocity: getCurrentVelocity() });
   socket.on('data', (req) => {
     console.log('Incoming request: ', JSON.parse(req.toString()));
     requestController.processRequest(JSON.parse(req.toString()));

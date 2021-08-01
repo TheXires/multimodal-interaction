@@ -5,7 +5,7 @@
   left: 1rem;
   padding: 1rem;
   border-radius: 2rem;
-  transition: .3s;
+  transition: 0.3s;
 }
 .indicator.micStateOff {
   background-color: #afafaf;
@@ -15,4 +15,9 @@
 }
 .indicator.micStateProcessing {
   background-color: #f5d681;
+}
+
+.indicator.connectionLost {
+  color: red;
+  transform: scale(2);
 }

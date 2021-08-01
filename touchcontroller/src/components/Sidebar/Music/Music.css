@@ -22,7 +22,7 @@
   font-size: 1.5rem;
 }
 
-.music__controlls {
+.music__controls {
   position: absolute;
   display: flex;
   flex-direction: row;
@@ -31,7 +31,8 @@
   justify-content: space-around;
 }
 
-.music__buttonControlls {
+.music__buttonControls {
   color: white;
   font-size: 3rem;
+  cursor: pointer;
 }

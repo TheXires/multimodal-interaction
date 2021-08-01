@@ -1,25 +1,28 @@
 import { sendMessage } from '..';
 import { finished } from './ui.service';
+import { getCurrentVelocity, changeVelocityBy, setVelocityTo } from '../simulation';
 
 /**
  * change the velocity of the vehicle
- * 
- * @param velocity 
+ *
+ * @param velocity
  */
 const changeVelocity = (velocity: number): void => {
   console.log('changeVelocity: ' + velocity);
-  sendMessage({action: 'velocityChanged', velocity: Math.random()*10})
+  changeVelocityBy(velocity);
+  sendMessage({ action: 'velocityChanged', velocity: getCurrentVelocity() });
   finished();
 };
 
 /**
  * set the velocity of the vehicle
- * 
- * @param velocity 
+ *
+ * @param velocity
  */
 const setVelocity = (velocity: number): void => {
   console.log('setVelocity: ' + velocity);
-  sendMessage({action: 'velocityChanged', velocity: velocity})
+  setVelocityTo(velocity);
+  sendMessage({ action: 'velocityChanged', velocity: velocity });
   finished();
 };
 
@@ -41,8 +44,8 @@ const emergencyStop = (): void => {
 
 /**
  * change the direction on the next crossroad
- * 
- * @param direction 
+ *
+ * @param direction
  */
 const changeDirection = (direction: string): void => {
   console.log('changeDirection: ' + direction);
@@ -51,8 +54,8 @@ const changeDirection = (direction: string): void => {
 
 /**
  * change the lane
- * 
- * @param direction 
+ *
+ * @param direction
  */
 const changeLane = (direction: string): void => {
   console.log('changeLane: ' + direction);
