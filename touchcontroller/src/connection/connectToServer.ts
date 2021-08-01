@@ -1,4 +1,4 @@
-import { stat } from 'fs';
+import JsonSocket from 'json-socket';
 import net from 'net';
 import {
   updateConnectionLostIndicator,
@@ -9,14 +9,15 @@ import { Action } from '../types/actions';
 import { MicIndicatorState } from '../types/micIndicatorState';
 
 const port = 4501;
-let socket = net.createConnection(port);
+const host = '127.0.0.1';
+let socket = new JsonSocket(new net.Socket());
 let socketActive = false;
 
 /**
  * connect to server
  */
 const connectToServer = (): void => {
-  socket = socket.connect(port);
+  socket.connect(port, host);
 };
 
 /**
@@ -37,10 +38,9 @@ socket.on('connect', () => {
   console.log('connected');
 });
 
-socket.on('data', (data: string) => {
+socket.on('message', (state) => {
   updateConnectionLostIndicator(false);
   // console.log('Pure Data: ', JSON.parse(data.toString()));
-  const state = JSON.parse(data.toString());
   switch (state.action) {
     case 'listening':
       console.log('listening');
@@ -95,9 +95,8 @@ socket.on('end', () => {
  */
 export const sendMessage = (message: Action): void => {
   if (socketActive) {
-    const json = JSON.stringify(message);
-    console.log('json: ', json);
-    socket.write(json, (error) => {
+    console.log('message: ', message);
+    socket.sendMessage(message, (error) => {
       if (error) {
         console.log(error.message);
       }
