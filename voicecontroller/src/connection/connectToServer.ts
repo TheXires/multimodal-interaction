@@ -11,7 +11,6 @@ let socketActive = false;
  */
 const connectToServer = (): void => {
   socket.destroy();
-  console.log('test: ', socket.destroyed);
   socket.setTimeout(0);
   socket.connect(port);
 };
@@ -45,7 +44,7 @@ socket.on('error', (error: any) => {
 
 // when losing connection to server try to reconnect
 socket.on('end', () => {
-  console.log('Try to reconnect...');
+  console.log('try to reconnect...');
   socketActive = false;
   const tryToReconnect = setInterval(() => {
     if (!socketActive) {
