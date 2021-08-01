@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { MicIndicatorState } from '../../types/micIndicatorState';
-import { ImConnection } from 'react-icons/im';
+import { VscDebugDisconnect } from 'react-icons/vsc';
 import './MicIndicator.css';
 
 export let updateMicIndicator: (state: MicIndicatorState) => void;
@@ -15,7 +15,11 @@ const MicIndicator = (): JSX.Element => {
     updateConnectionLostIndicator = setconnectionLost;
   }, []);
 
-  return !connectionLost ? <div className={'indicator ' + indicator}></div> : <ImConnection className="indicator connectionLost" />;
+  return !connectionLost ? (
+    <div className={'indicator ' + indicator}></div>
+  ) : (
+    <VscDebugDisconnect className="indicator connectionLost" />
+  );
 };
 
 export default MicIndicator;
