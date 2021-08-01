@@ -1,3 +1,5 @@
 {
-  "startVelocity": 52
+  "startVelocity": 52,
+  "maxVelocity": 130,
+  "minVelocity": 0
 }
