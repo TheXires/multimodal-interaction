@@ -95,7 +95,7 @@ socket.on('end', () => {
  */
 export const sendMessage = (message: Action): void => {
   if (socketActive) {
-    console.log('message: ', message);
+    // console.log('message: ', message);
     socket.sendMessage(message, (error) => {
       if (error) {
         console.log(error.message);

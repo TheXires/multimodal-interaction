@@ -16,7 +16,9 @@ server.on('connection', (socket) => {
   clients.push(jsonSocket);
   console.log('connection established \n active connections: ', clients.length);
 
+  // send velocity for initial display
   sendMessage({ action: 'velocityChanged', velocity: getCurrentVelocity() });
+
   jsonSocket.on('message', (req) => {
     console.log('Incoming request: ', req);
     requestController.processRequest(req);

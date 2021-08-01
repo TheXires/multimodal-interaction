@@ -5,6 +5,9 @@ import { GiParkBench } from 'react-icons/gi';
 import { CgSearchLoading } from 'react-icons/cg';
 import { emergencyStop, stop } from '../../services/car.service';
 
+/**
+ * 
+ */
 const StopButtons = () => {
   const [isPause, setIsPause] = useState(false);
 

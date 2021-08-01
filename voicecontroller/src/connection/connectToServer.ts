@@ -12,9 +12,7 @@ let socketActive = false;
  * connect to server
  */
 const connectToServer = (): void => {
-  socket.destroy();
-  socket.setTimeout(0);
-  socket.connect(port);
+  socket.connect(port, host);
 };
 
 /**

@@ -25,25 +25,34 @@ const Music = (): JSX.Element => {
   const [track, setTrack] = useState(0);
   const [playing, setPlaying] = useState(false);
 
-  function next() {
+  /**
+   * skip to the next track
+   */
+  const next = () => {
     if (track == dummyTracks.length - 1) {
       setTrack(0);
     } else {
       setTrack(track + 1);
     }
-  }
+  };
 
-  function previous() {
+  /**
+   * skip to the previous track
+   */
+  const previous = () => {
     if (track == 0) {
       setTrack(dummyTracks.length - 1);
     } else {
       setTrack(track - 1);
     }
-  }
+  };
 
-  function playPause() {
+  /**
+   * pause music
+   */
+  const playPause = () => {
     setPlaying(!playing);
-  }
+  };
 
   return (
     <div className="music" style={{ borderRadius: 25 }}>
