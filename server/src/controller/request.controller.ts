@@ -4,7 +4,7 @@ import { Action } from '../types/actions';
 
 /**
  * identify intent from clients and calls according function
- * 
+ *
  * @param req action request from controllers
  */
 const processRequest = (req: Action): void => {
@@ -15,6 +15,9 @@ const processRequest = (req: Action): void => {
       break;
     case 'stopListening':
       uiService.processing();
+      break;
+    case 'notUnderstood':
+      uiService.finished();
       break;
 
     // both

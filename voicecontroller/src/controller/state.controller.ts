@@ -14,4 +14,11 @@ const stopListening = (): void => {
   stateService.stopListening();
 };
 
-export default { startListening, stopListening };
+/**
+ * notifies server that input was not understood
+ */
+const notUnderstood = (): void => {
+  stateService.notUnderstood();
+};
+
+export default { startListening, stopListening, notUnderstood };

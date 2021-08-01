@@ -14,4 +14,11 @@ const stopListening = (): void => {
   sendMessageToServer({ action: 'stopListening' });
 };
 
-export default { startListening, stopListening };
+/**
+ * notifies server that input was not understood
+ */
+const notUnderstood = (): void => {
+  sendMessageToServer({ action: 'notUnderstood' });
+};
+
+export default { startListening, stopListening, notUnderstood };

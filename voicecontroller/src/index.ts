@@ -48,7 +48,7 @@ const keywordCallback = () => {
 const inferenceCallback = (inference: Inference): void => {
   stateController.stopListening();
   console.log(JSON.stringify(inference, null, 4));
-  if (!inference.isUnderstood) return;
+  if (!inference.isUnderstood) return stateController.notUnderstood();
   switch (inference.intent) {
     case 'changeVelocity':
       carController.changeVelocity(inference.slots);
@@ -60,6 +60,7 @@ const inferenceCallback = (inference: Inference): void => {
       carController.changeLane(inference.slots);
       break;
     default:
+      stateController.notUnderstood();
       break;
   }
 };
