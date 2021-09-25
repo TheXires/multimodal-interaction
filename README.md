@@ -1,6 +1,6 @@
 # Anleitung
 Im Folgenden wollen wir die Technische Seite des Projektes etwas genauer aufschlüssel, sodass das Projekt auch von anderen Personen weitergeführt werden kann.
-Vorab ist es wichtig zu wissen, dass der __Voicecontroller unter Windows nicht lauffähig__ ist.
+Vorab ist es wichtig zu erwähnen, dass der Voicecontroller unter Windows __nicht__ lauffähig ist.
 
 ## Sprachbefehle
 Die Worte in den Klammer sind optional.
