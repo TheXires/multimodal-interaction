@@ -1,0 +1,153 @@
+context:
+  expressions:
+    changeDirection:
+      - fahre (bitte) $direction:direction
+      - biege (bitte) $direction:direction ab
+      - (an der nächsten Kreuzung) $direction:direction abbiegen
+      - an der (nächsten) kreuzung $direction:direction
+    changeLane:
+      - (bitte) wechsel die spur (bitte) nach $laneDirection:direction
+      - (bitte) spur wechsel nach $laneDirection:direction
+    changeVelocity:
+      - fahre (bitte) $germannumber:velocity kmh $acceleration:acceleration
+      - fahre (bitte) $acceleration:acceleration
+      - fahre (bitte) $germannumber:velocity (kmh)
+      - setzt (bitte) die geschwindigkeit (bitte) auf $germannumber:velocity
+        (kmh)
+  slots:
+    germannumber:
+      - ein
+      - zwei
+      - drei
+      - vier
+      - fünf
+      - sechs
+      - sieben
+      - acht
+      - neun
+      - zehn
+      - elf
+      - zwölf
+      - dreizehn
+      - vierzehn
+      - fünfzehn
+      - sechzehn
+      - siebzehn
+      - achtzehn
+      - neunzehn
+      - zwanzig
+      - einundzwanzig
+      - zweiundzwanzig
+      - dreiundzwanzig
+      - vierundzwanzig
+      - fünfundzwanzig
+      - sechsundzwanzig
+      - siebenundzwanzig
+      - achtundzwanzig
+      - neunundzwanzig
+      - dreißig
+      - einunddreißig
+      - zweiunddreißig
+      - dreiunddreißig
+      - vierunddreißig
+      - fünfunddreißig
+      - sechsunddreißig
+      - siebenunddreißig
+      - achtunddreißig
+      - neununddreißig
+      - vierzig
+      - einundvierzig
+      - zweiundvierzig
+      - dreiundvierzig
+      - vierundvierzig
+      - fünfundvierzig
+      - sechsundvierzig
+      - siebenundvierzig
+      - achtundvierzig
+      - neunundvierzig
+      - fünfzig
+      - einundfünfzig
+      - zweiundfünfzig
+      - dreiundfünfzig
+      - vierundfünfzig
+      - fünfundfünfzig
+      - sechsundfünfzig
+      - siebenundfünfzig
+      - achtundfünfzig
+      - neunundfünfzig
+      - sechzig
+      - einundsechzig
+      - zweiundsechzig
+      - dreiundsechzig
+      - vierundsechzig
+      - fünfundsechzig
+      - sechsundsechzig
+      - siebenundsechzig
+      - achtundsechzig
+      - neunundsechzig
+      - siebzig
+      - einundsiebzig
+      - zweiundsiebzig
+      - dreiundsiebzig
+      - vierundsiebzig
+      - fünfundsiebzig
+      - sechsundsiebzig
+      - siebenundsiebzig
+      - achtundsiebzig
+      - neunundsiebzig
+      - achtzig
+      - einundachtzig
+      - zweiundachtzig
+      - dreiundachtzig
+      - vierundachtzig
+      - fünfundachtzig
+      - sechsundachtzig
+      - siebenundachtzig
+      - achtundachtzig
+      - neunundachtzig
+      - neunzig
+      - einundneunzig
+      - zweiundneunzig
+      - dreiundneunzig
+      - vierundneunzig
+      - fünfundneunzig
+      - sechsundneunzig
+      - siebenundneunzig
+      - achtundneunzig
+      - neunundneunzig
+      - hundert
+      - hunderteins
+      - hundertzwei
+      - hundertdrei
+      - hundertvier
+      - hundertfünf
+      - hundertsieben
+      - hundertacht
+      - hundertzehn
+      - hundertelf
+      - hundertzwölf
+      - hundertdreizehn
+      - hundertfünfzehn
+      - hundertsechzehn
+      - hundertachtzehn
+      - hundertzwanzig
+      - hundertzweiundzwanzig
+      - hundertfünfundzwanzig
+      - hundertachtundzwanzig
+      - hundertdreißig
+      - einhundert
+      - einhundertzwei
+      - einhundertsechzehn
+      - einhundertsiebzehn
+      - einhundertneunzehn
+      - einhundertdreiundzwanzig
+    acceleration:
+      - schneller
+      - langsamer
+    direction:
+      - rechts
+      - links
+      - geradeaus
+    laneDirection:
+      - rechts
+      - links
