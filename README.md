@@ -26,7 +26,7 @@ Um das Projekt unter Linux (und vielleicht auch MacOs) zu bauen und auszuführen
 
 ## Picovoice
 Die Dateien von Picovoice sind immer __nur für 30 Tage gültig__ bevor sie erneuert werden müssen. Dies kann einfach über die [Picovoice console](https://console.picovoice.ai/) auf der Webseite erfolgen. 
-Wenn dafür eine neuer Account angelegt wird, kann die beiliegende __.yaml__ Datei unter dem Reiter __Rhino__ importiert werden. Unter dem Reiter __Porcupine__ kann dann das Wakeword erstellt werden. Dabei muss darauf geachtet werden, dass die Exporte für die richtige Zielplattform angelegt werden.
+Wenn dafür eine neuer Account angelegt wird, kann die im picovoice Ordner des Voicecontrollers beiliegende __.yaml__ Datei unter dem Reiter __Rhino__ importiert werden. Unter dem Reiter __Porcupine__ kann dann das Wakeword erstellt werden. Dabei muss darauf geachtet werden, dass die Exporte für die richtige Zielplattform angelegt werden.
 Das Trainieren und herunterladen einer Rhino Datei ist innerhalb von wenigen Sekunden erledigt. Eine Porcupine Datei benötigt mit ca. 3 Stunden allerdings deutlich länger.
 Anschließend müssen die beiden Dateien im Ordern __picovoice__ im Voicecontroller unter den Namen __hey_auto.ppn__ und __carController_de_linux.rhn__ abgelegt werden.
 Sollte einmal keine Zeit für eine neue Rhino Datei zur Verfügung stehen kann alternativ die Datei __leguan_linux.ppn__ im picovoice Order umbenant werden. Diese enthält das Wakeword __leguan__ und kann ohne Erneuerung immer verwendet werden.
